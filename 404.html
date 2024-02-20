@@ -4,9 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 Not Found</title>
-    <style></style>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      * {
+        transition: 0.2s;
+      }
+
+      body.dark {
+        background-color: #1a1a1a;
+      }
+
+      p {
+        display: flex;
+        flex-direction: column;
+        font-family: "Rubik";
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      body.dark p {
+        color: #ccc;
+      }
+
+      body.dark p .code {
+        color: #fff;
+      }
+
+      p .code {
+        font-size: 3.2rem;
+        white-space: nowrap;
+      }
+    </style>
   </head>
   <body>
-    <p>404 - This page could not be found.</p>
+    <p><span class="code">404</span>This page could not be found.</p>
+    <script>
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark");
+      }
+    </script>
   </body>
 </html>
