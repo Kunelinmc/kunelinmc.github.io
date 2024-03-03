@@ -313,8 +313,7 @@ body.client2 .sidebar {
   outline: none;
   color: #ccc;
   font-size: 24px;
-  max-width: 80%;
-  width: calc(100% - 55px);
+  width: 100%;
 }
 
 .du1 .kg1 .gub1::selection {
