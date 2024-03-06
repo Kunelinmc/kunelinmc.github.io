@@ -27,8 +27,7 @@ function cg(t) {
     (aa(".bn .thumbnail").src = "/assets/unnamed.jpg"),
     (document.title = "Structure - Chat Room"),
     (aa(".account").innerText = t),
-    (window.login = !0),
-    (aa(".opdc .gbop.nowrap[data-query=\"Chat Room\"]").classList.add("active"))
+    (window.login = !0,
     window.ddt1();
 }
 window.onload = () => {
