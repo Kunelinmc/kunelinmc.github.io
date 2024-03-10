@@ -5,7 +5,7 @@ const allmsg = [],
   (editor = aa(".tg1")),
   (sendbtn = aa(".tg2")),
   (msgb = aa(".kl1"));
-(window.focd = 0), (window.login = !1), document.getElementById("Myin");
+(window.focd = 0), (window.login = !1)
 var chatroom = [];
 function ab() {
   let t = window.navigator.userAgentData;
