@@ -49,10 +49,7 @@ body {
 	user-select: none;
 	font-family: Rubik;
 }
-* {
-	-webkit-user-select: none; /* Chrome Safari */        
-  -moz-user-select: none;    /* Firefox */
-}
+
 .sidebar {
 	flex-direction: column;
 	display: flex;
