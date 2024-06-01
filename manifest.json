@@ -2,7 +2,7 @@
     "name": "Structure",
     "short_name": "Structure",
     "start_url": ".",
-    "display": "standalone",
+    "display": "standalone", 
     "background_color": "#191919",
     "description": "A simple and private chat app",
     "icons": [
