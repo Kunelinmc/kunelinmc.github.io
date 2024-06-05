@@ -23,7 +23,7 @@
 		/>
 		<title>Structure</title>
 	</head>
-	<body class="app" theme="light">
+	<body class="app" theme="dark">
 		<noscript class="data-v-pbK92VG3">
 			<svg
 				class="data-v-xEV7t6Dm icon"
@@ -54,7 +54,7 @@
 				</svg>
 				<input
 					class="data-v-ujXllYgW"
-					placeholder="Search"
+					placeholder="Search..."
 					maxlength="25"
 					tabindex="0"
 				/>
@@ -70,6 +70,7 @@
 				<div class="data-02EVo67v"></div>
 				<div class="data-v-5WLQI9tU"></div>
 			</div>
+			
 			<div class="data-v-qvrT8rNI">
 				<div class="data-v-ikyLwDf4 data-v-Vjpzmyej">
 					<svg
@@ -84,7 +85,6 @@
 							/>
 						</g>
 					</svg>
-
 					<!--Start HERE-->
 				</div>
 				<div class="data-v-9vGRGDgT">
@@ -167,7 +167,7 @@
 			onValue(ref(database, "chat"), (k) => {
 				var z = k.val();
 				if (z.sender !== window.user_id) {
-					_A25(z.message, z.timestamp, z.uid);
+					_A25(z.message, z.uid, z.sender);
 				}
 			});
 		</script>
