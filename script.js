@@ -1,9 +1,7 @@
-(function () {
-	console.log(
-		`%c 💀 Please do not perform any operations in the console,\nattackers may steal your data.`,
-		"font-size:22px"
-	);
-})();
+console.log(
+	`%c 💀 Please do not perform any operations in the console,\nattackers may steal your data.`,
+	"font-size:22px"
+);
 const _J0 =
 		"tsARDHTI.ikyLwDf4.uwRtDpu4.9jgvlvYK.nKzgeITl.ujXllYgW.emr1y6ie.5WLQI9tU.LXlNqANi".split(
 			"."
@@ -145,63 +143,10 @@ function _A9(length) {
 	}
 	return _rs;
 }
-function _A17(t, u) {
-	var f = document.createElement("div"),
-		n = document.createElement("div"),
-		g = document.createElement("div"),
-		q = document.createElement("div"),
-		k = document.createElement("span"),
-		now = new Date(),
-		hour = now.getHours(),
-		minute = now.getMinutes(), // 當前時間
-		ts = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`, // 自動補零
-		s = document.createTextNode(ts),
-		uid = _A9(8),
-		suid = btoa(`${now.getTime()}${uid}`);
-
-	q.classList.add("data-v-COQVUpbO");
-	g.classList.add("data-v-j33LBSU4");
-	n.classList.add("data-v-MyW2iRSH");
-	f.classList.add("data-v-VC8gtuyS");
-
-	n.setAttribute("data-uid", suid);
-	f.appendChild(n);
-	f.appendChild(g);
-	g.appendChild(q);
-	q.appendChild(k);
-	k.appendChild(s);
-	var z = _A22(_A21(_A18(_A20(t))));
-	n.innerHTML = z;
-	document.querySelector(_J1 + _J0[1]).appendChild(f);
-	// 滾動到底部
-	document
-		.querySelector(_J1 + _J0[1])
-		.scrollTo(0, document.querySelector(_J1 + _J0[1]).scrollHeight);
-	if (u) {
-		f.classList.add("data-v-iOw4dg0O");
-		try {
-			WriteData(z, ts, suid, window.user_id);
-		} catch (err) {
-			console.log(err);
-		}
-	}
-}
 function _A18(text) {
 	// 匹配所有網址
 	return text.replace(/https?:\/\/[^\s/$.?#].[^\s]*/g, function (d) {
 		return `<span class="data-v-0ciSQShX" onclick="window.open(&quot;${d}&quot;);this.classList.add(&quot;visited&quot;);">${decodeURIComponent(d)}</span>`;
-	});
-}
-function _A20(text) {
-	// 匹配所有位於 ` 和 ` 中的文本，但含有<br>的文本除外
-	return text.replace(/`([^`<]+(?!<br>))`/g, function (s) {
-		return `<span class="data-v-IMgj7vBV">${s}</span>`;
-	});
-}
-function _A21(text) {
-	// 匹配所有位於 ** 和 ** 中的文本
-	return text.replace(/\*\*(.*?)\*\*/g, function (match, p1) {
-		return `<span class="data-v-3s0DfVhc">${p1}</span>`;
 	});
 }
 function _B1() {
@@ -355,28 +300,76 @@ function quickStart() {
 window.ononline = () => {
 	window.location.reload();
 };
-
-function _A25(text, time, uid) {
+function _A17(t, u) {
 	var f = document.createElement("div"),
 		n = document.createElement("div"),
-		g = document.createElement("div"),
-		q = document.createElement("div"),
-		k = document.createElement("span"),
-		s = document.createTextNode(time);
-	q.classList.add("data-v-COQVUpbO");
-	g.classList.add("data-v-j33LBSU4");
+		p = document.createElement("div"),
+		a = document.createElement("div"),
+		y = document.createElement("div"),
+		now = new Date(),
+		hour = now.getHours(),
+		minute = now.getMinutes(), // 當前時間
+		ts = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`, // 自動補零
+		uid = _A9(8),
+		suid = btoa(`${now.getTime()}${uid}`);
+
 	n.classList.add("data-v-MyW2iRSH");
 	f.classList.add("data-v-VC8gtuyS");
-	n.setAttribute("data-uid", uid);
-	f.appendChild(n);
-	f.appendChild(g);
-	g.appendChild(q);
-	q.appendChild(k);
-	k.appendChild(s);
-	n.innerHTML = text;
-	document.querySelector(_J1 + _J0[1]).appendChild(f);
-	document
-		.querySelector(_J1 + _J0[1])
-		.scrollTo(0, document.querySelector(_J1 + _J0[1]).scrollHeight);
+	p.classList.add("data-v-SYcbYqTG");
+	a.classList.add("data-v-KljxgVJA");
+	y.classList.add("data-v-u4Celbbq");
+
+	f.setAttribute("data-uid", suid);
+	f.appendChild(p);
+	f.appendChild(a);
+	a.appendChild(y);
+	a.appendChild(n);
+	var z = _A22(_A18(t));
+	y.innerText = "You";
+	n.innerHTML = z;
+	// 滾動到底部
+	const scrollTop = msgfr.scrollTop;
+	const divHeight = msgfr.clientHeight;
+	const contentHeight = msgfr.scrollHeight;
+	msgfr.appendChild(f);
+	if (scrollTop + divHeight >= contentHeight) {
+		msgfr.scrollTo(0, msgfr.scrollHeight);
+	}
+	if (u) {
+		f.classList.add("data-v-iOw4dg0O");
+		try {
+			WriteData(z, ts, suid, window.user_id);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 }
-window._A25 = _A25
+
+const msgfr = document.querySelector(_J1 + _J0[1]);
+function _A25(text, uid, sender) {
+	var f = document.createElement("div"),
+		n = document.createElement("div"),
+		p = document.createElement("div"),
+		z = document.createElement("div"),
+		y = document.createElement("div");
+	n.classList.add("data-v-MyW2iRSH");
+	f.classList.add("data-v-VC8gtuyS");
+	p.classList.add("data-v-SYcbYqTG");
+	z.classList.add("data-v-KljxgVJA");
+	y.classList.add("data-v-u4Celbbq");
+	f.setAttribute("data-uid", uid);
+	f.appendChild(p);
+	f.appendChild(z);
+	z.appendChild(y);
+	z.appendChild(n);
+	n.innerHTML = text;
+	y.innerText = sender;
+	const scrollTop = msgfr.scrollTop;
+	const divHeight = msgfr.clientHeight;
+	const contentHeight = msgfr.scrollHeight;
+	msgfr.appendChild(f);
+	if (scrollTop + divHeight >= contentHeight) {
+		msgfr.scrollTo(0, msgfr.scrollHeight);
+	}
+}
+window._A25 = _A25;
