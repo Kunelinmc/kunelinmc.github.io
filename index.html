@@ -13,21 +13,13 @@
 			href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
 			rel="stylesheet"
 		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-			rel="stylesheet"
-		/>
 		<title>Structure</title>
 	</head>
-	<body class="app" theme="dark">
+	<body class="app">
 		<div class="activitybar">
-			<!--Fluent Icon 24-->
 			<div class="_top">
 				<div class="option">
+					<div class="tooltip">Home</div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -36,13 +28,13 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="feather feather-home"
 					>
 						<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 						<polyline points="9 22 9 12 15 12 15 22"></polyline>
 					</svg>
 				</div>
 				<div class="option active">
+					<div class="tooltip">Chat</div>
 					<div class="badge"></div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<g fill="none">
@@ -57,6 +49,7 @@
 					</svg>
 				</div>
 				<div class="option">
+					<div class="tooltip">Explore</div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -75,6 +68,7 @@
 			</div>
 			<div class="_bottom">
 				<div class="option">
+					<div class="tooltip">Settings</div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<g fill="none" fill-rule="evenodd">
 							<path
@@ -103,6 +97,7 @@
 				<input
 					class="data-v-ujXllYgW"
 					placeholder="Search..."
+					disabled
 					maxlength="25"
 					tabindex="0"
 				/>
@@ -112,18 +107,14 @@
 					<span>No items found</span>
 				</div>
 			</div>
-			
 		</div>
 		<div class="main">
-			<div class="data-v-ikyLwDf4 data-v-Vjpzmyej">
-				<!--Start HERE-->
-			</div>
+			<div class="data-v-ikyLwDf4 data-v-Vjpzmyej"></div>
 			<div class="data-v-9vGRGDgT">
 				<div class="data-v-kFjA3rNT">
-					<!--Important a	utofocus-->
-						<div
+					<div
 						class="data-v-tsARDHTI"
-						contenteditable="true"
+						contenteditable="false"
 						autocomplete="off"
 						spellcheck="false"
 						tabindex="0"
@@ -141,6 +132,99 @@
 						</svg>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="data-v-Lwq2C6gp">
+			<div class="data-v-6xGhJciS">
+				<div class="data-v-K6zzHdt3">Please enter the invitation code</div>
+				<input
+					autofocus
+					class="data-v-PgDa0opT"
+					type="text"
+					spellcheck="false"
+					autocomplete="off"
+				/>
+				<div class="data-v-HiNaAdY7">
+					<span>The invitation code cannot be found</span>
+				</div>
+				<div class="data-v-7dBirbNO" tabindex="0" translate="no">OK</div>
+			</div>
+		</div>
+		<div class="data-v-aAFBykLS">
+			<div class="item" data-conid="edit">
+				<svg
+					class="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+				>
+					<path
+						d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
+					></path>
+				</svg>
+				<div class="cont">Edit</div>
+			</div>
+			<div class="item" data-conid="copy">
+				<svg
+					class="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+				>
+					<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+					<path
+						d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+					></path>
+				</svg>
+				<div class="cont">Copy</div>
+			</div>
+			<div class="separator"></div>
+			<div class="item disabled" data-conid="translate">
+				<svg
+					class="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+				>
+					<polyline points="17 1 21 5 17 9"></polyline>
+					<path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+					<polyline points="7 23 3 19 7 15"></polyline>
+					<path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+				</svg>
+				<div class="cont">Translate</div>
+			</div>
+			<div class="item" data-conid="share">
+				<svg
+					class="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+				>
+					<polyline points="15 14 20 9 15 4"></polyline>
+					<path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
+				</svg>
+				<div class="cont">Share</div>
+			</div>
+			<div class="separator"></div>
+			<div class="item rd" data-conid="delete">
+				<svg
+					class="icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+				>
+					<polyline points="3 6 5 6 21 6"></polyline>
+					<path
+						d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+					></path>
+				</svg>
+				<div class="cont">Delete</div>
+			</div>
+		</div>
+		<div class="data-v-5nA7I0xC">
+			<div class="data-v-G4luv08g">
+				<div class="data-v-z5aMGGya">
+					<div class="_left">
+						<div class="data-v-T6Rn8KL1">Settings</div>
+					</div>
+					<div class="_right"></div>
+				</div>
+				<div class="data-v-KIflJALr"></div>
 			</div>
 		</div>
 		<script type="module">
@@ -199,11 +283,11 @@
 			onValue(ref(database, "chat"), (k) => {
 				var z = k.val();
 				if (z.sender !== window.user_id) {
-					_A25(z.message, z.uid, z.sender);
+					_A25(z.message, z.uid, z.sender, false);
 				}
 			});
 		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.11.0/sweetalert2.all.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
