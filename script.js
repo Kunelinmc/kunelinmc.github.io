@@ -190,8 +190,19 @@ function _A17(e) {
 	t = null != t ? t : e;
 	try {
 		function a() {
+			InvCdInput.setAttribute("disabled", "");
+			InvCdInput.onkeydown = () => {
+				return "";
+			};
+			InvCdInput.blur();
+			InCdBtn.blur();
+			InCdBtn.onclick = () => {
+				return "";
+			};
 			var e = InvCdInput.value.toLowerCase(),
 				t = _(".data-v-HiNaAdY7");
+			InCdBtn.classList.add("progress");
+			InCdBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="spinner"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>`;
 			GetData("invitation_code")
 				.then((a) => {
 					console.log(a);
@@ -207,13 +218,22 @@ function _A17(e) {
 				})
 				.catch((e) => {
 					console.error(e);
+					t.classList.add("show");
+					InvCdInput.removeAttribute("disabled");
+					t.querySelector("span").textContent = "An unknown error occurred";
+					InCdBtn.classList.remove("progress");
+					InCdBtn.innerHTML = "<span>OK</span>";
+					InvCdInput.onkeydown = (e) => {
+						13 === e.keyCode && a();
+					};
+					InCdBtn.onclick = a;
 				});
 		}
 		setTimeout(function () {
 			_(".data-v-Lwq2C6gp").classList.add("in");
 		}, 1e3),
-			_(".data-v-aAFBykLS").classList.remove("show"),
 			(InvCdInput.value = t),
+			_(".data-v-aAFBykLS").classList.remove("show"),
 			(InvCdInput.onkeydown = (e) => {
 				13 === e.keyCode && a();
 			}),
@@ -252,12 +272,7 @@ function _A25(e, t, a, nn) {
 		}),
 		(i.innerHTML = e);
 	if (nn) {
-		r.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-left: 4px">
-	<g fill="none" fill-rule="evenodd">
-		<path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-		<path fill="#8ae8ff" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" />
-	</g>
-</svg>`;
+		r.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" style="margin-left: 4px"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="#8ae8ff" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0" /></g></svg>`;
 	}
 	let o = msgfr.scrollTop,
 		d = msgfr.clientHeight,
@@ -296,7 +311,3 @@ function S119(e, s) {
 _(".main .data-v-ikyLwDf4").addEventListener("scroll", function () {
 	_(".data-v-aAFBykLS").classList.remove("show");
 });
-
-document.oncopy = (e) => {
-	console.log(e);
-};
