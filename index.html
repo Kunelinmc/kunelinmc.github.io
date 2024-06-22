@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="manifest" href="/manifest.json" />
 		<link rel="shortcut icon" href="icon.png" />
@@ -19,7 +18,7 @@
 		<div class="activitybar">
 			<div class="_top">
 				<div class="option">
-					<div class="tooltip">Home</div>
+					<div class="badge"></div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -34,7 +33,6 @@
 					</svg>
 				</div>
 				<div class="option active">
-					<div class="tooltip">Chat</div>
 					<div class="badge"></div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<g fill="none">
@@ -49,7 +47,7 @@
 					</svg>
 				</div>
 				<div class="option">
-					<div class="tooltip">Explore</div>
+					<div class="badge"></div>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -68,7 +66,7 @@
 			</div>
 			<div class="_bottom">
 				<div class="option">
-					<div class="tooltip">Settings</div>
+					<div class="badge"></div>
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<g fill="none" fill-rule="evenodd">
 							<path
@@ -91,11 +89,12 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 				>
-					<circle cx="11" cy="11" r="8"></circle>
-					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					<circle cx="11" cy="11" r="8" />
+					<path d="m21 21-4.3-4.3" />
 				</svg>
 				<input
 					class="data-v-ujXllYgW"
+					type="text"
 					placeholder="Search..."
 					disabled
 					maxlength="25"
@@ -103,24 +102,6 @@
 				/>
 			</div>
 			<div class="data-v-8FrVw7Ca">
-				
-				<div class="data-v-fDyhYSGO show">
-					<span>The current plan only supports public chat</span>
-					<div class="data-v-MihPOatO">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<g fill="none">
-								<path
-									d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
-								/>
-								<path
-									fill="#facc15"
-									d="m6.173 13.004l.17.371a8.694 8.694 0 0 0 3.3 3.638l.265.155a.181.181 0 0 1 0 .316a8.693 8.693 0 0 0-3.565 3.793l-.17.372a.19.19 0 0 1-.346 0l-.17-.372a8.693 8.693 0 0 0-3.565-3.793a.181.181 0 0 1 0-.316l.265-.155a8.694 8.694 0 0 0 3.3-3.638l.17-.371a.19.19 0 0 1 .346 0M15.078 2.73a15.213 15.213 0 0 0 6.536 7.288a.317.317 0 0 1 0 .553a15.212 15.212 0 0 0-6.536 7.289a.331.331 0 0 1-.605 0a15.212 15.212 0 0 0-6.536-7.289a.317.317 0 0 1 0-.553a15.213 15.213 0 0 0 6.536-7.288a.331.331 0 0 1 .605 0"
-								/>
-							</g>
-						</svg>
-						<span>Upgrade</span>
-					</div>
-				</div>
 				<div class="data-v-emr1y6ie">
 					<span>No items found</span>
 				</div>
@@ -130,6 +111,7 @@
 			<div class="data-v-ikyLwDf4 data-v-Vjpzmyej"></div>
 			<div class="data-v-9vGRGDgT">
 				<div class="data-v-kFjA3rNT">
+					
 					<div
 						class="data-v-tsARDHTI"
 						contenteditable="false"
@@ -144,7 +126,7 @@
 							viewBox="0 0 24 24"
 						>
 							<path
-								fill="currentColor"
+								fill="#ffffff"
 								d="m12.815 12.197l-7.532 1.255a.5.5 0 0 0-.386.318L2.3 20.728c-.248.64.421 1.25 1.035.942l18-9a.75.75 0 0 0 0-1.341l-18-9c-.614-.307-1.283.303-1.035.942l2.598 6.958a.5.5 0 0 0 .386.318l7.532 1.255a.2.2 0 0 1 0 .395"
 							/>
 						</svg>
@@ -178,8 +160,8 @@
 					viewBox="0 0 24 24"
 				>
 					<path
-						d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"
-					></path>
+						d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+					/>
 				</svg>
 				<div class="cont">Edit</div>
 			</div>
@@ -189,10 +171,8 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 				>
-					<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-					<path
-						d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-					></path>
+					<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+					<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
 				</svg>
 				<div class="cont">Copy</div>
 			</div>
@@ -203,10 +183,12 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 				>
-					<polyline points="17 1 21 5 17 9"></polyline>
-					<path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-					<polyline points="7 23 3 19 7 15"></polyline>
-					<path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+					<path d="m5 8 6 6" />
+					<path d="m4 14 6-6 2-3" />
+					<path d="M2 5h12" />
+					<path d="M7 2h1" />
+					<path d="m22 22-5-10-5 10" />
+					<path d="M14 18h6" />
 				</svg>
 				<div class="cont">Translate</div>
 			</div>
@@ -216,8 +198,8 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 				>
-					<polyline points="15 14 20 9 15 4"></polyline>
-					<path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
+					<polyline points="15 17 20 12 15 7" />
+					<path d="M4 18v-2a4 4 0 0 1 4-4h12" />
 				</svg>
 				<div class="cont">Share</div>
 			</div>
@@ -228,10 +210,9 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 				>
-					<polyline points="3 6 5 6 21 6"></polyline>
-					<path
-						d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
-					></path>
+					<path d="M3 6h18" />
+					<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+					<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
 				</svg>
 				<div class="cont">Delete</div>
 			</div>
@@ -302,12 +283,13 @@
 
 			onValue(ref(database, "chat"), (k) => {
 				var z = k.val();
+				console.log(document.visibilityState);
 				if (z.sender !== window.user_id) {
 					_A25(z.message, z.uid, z.sender, false);
 				}
 			});
 		</script>
-		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		
 		<script src="script.js"></script>
 	</body>
 </html>
