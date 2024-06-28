@@ -9,6 +9,11 @@ const isMobileDevice =
 		window.navigator.platform
 	); // 用於匹配行動裝置
 
+
+if (isMobileDevice) {
+	document.body.classList.add("mobile")
+}
+
 // 定義常用元件
 const components = {
 	activitybar: _(".activitybar"),
