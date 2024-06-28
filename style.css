@@ -406,6 +406,8 @@ body:has(.data-v-9jgvlvYK:not(.show)) .data-v-MyW2iRSH:hover {
 	justify-content: center;
 }
 .data-v-uwRtDpu4 {
+	position: relative;
+	overflow: hidden;
 	align-items: center;
 	justify-content: center;
 	padding: 8px;
@@ -909,26 +911,35 @@ input[type="checkbox"].cls-switch:checked::after {
 
 .main .header ._right {
 	display: flex;
-	margin-right: 8px;
 	align-items: center;
 }
 
-.header .openmenu {
+.header .actionbtn {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	padding: 8px;
+	overflow: hidden;
 	border-radius: 200px;
 	transition: 0.2s;
 }
 
-.header .openmenu:hover {
+.header .actionbtn svg {
+	z-index: 19;
+}
+
+.header .actionbtn:hover {
 	background-color: #272a2d;
 }
 
+.header .actionbtn .ripple_effect {
+	z-index: 18;
+}
+
 .header span {
-	margin-left: 10px;
+	margin-left: 12px;
 	font-size: 22px;
 	line-height: 30px;
 }
