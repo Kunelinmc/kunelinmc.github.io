@@ -9,9 +9,8 @@ const isMobileDevice =
 		window.navigator.platform
 	); // 用於匹配行動裝置
 
-
 if (isMobileDevice) {
-	document.body.classList.add("mobile")
+	document.body.classList.add("mobile");
 }
 
 // 定義常用元件
@@ -389,3 +388,22 @@ document.addEventListener(
 	},
 	{ passive: false }
 );
+
+let lastTouchEndTime = 0;
+document.addEventListener(
+	"touchend",
+	(event) => {
+		const now = new Date().getTime();
+		if (now - lastTouchEndTime <= 300) {
+			// 偵測時間差是否小於 300ms
+			event.preventDefault();
+		}
+		lastTouchEndTime = now;
+	},
+	false
+);
+
+document.addEventListener("gesturestart", function (event) {
+	// 阻止兩指縮放畫面
+	event.preventDefault();
+});
