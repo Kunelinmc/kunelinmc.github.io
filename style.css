@@ -896,8 +896,21 @@ input[type="checkbox"].cls-switch:checked::after {
 .main .header {
 	display: none;
 	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
 	padding: 10px;
+}
+
+.main .header ._left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.main .header ._right {
+	display: flex;
+	margin-right: 8px;
+	align-items: center;
 }
 
 .header .openmenu {
