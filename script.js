@@ -1,7 +1,5 @@
 console.log(
-	`%c 💀 Please do not perform any operations in the console,
-	attackers may steal your data.`,
-	"font-size:22px"
+	"💀 Please do not perform any operations in the console, attackers may steal your data."
 );
 
 const _ = (e) => document.querySelector(e); // 比較簡潔的寫法
@@ -45,7 +43,7 @@ function _A9(e) {
 // 匹配網址
 function _A18(e) {
 	return e.replace(/https?:\/\/[^\s/$.?#].[^\s]*/g, function (e) {
-		return `<span class="data-v-0ciSQShX" onclick="window.open('${e}');this.classList.add('visited');">${decodeURIComponent(e)}</span>`;
+		return `<a class="data-v-0ciSQShX" href="${e}" target="_blank">${decodeURIComponent(e)}</span>`;
 	});
 }
 
@@ -54,7 +52,6 @@ components.searchInput.addEventListener("input", (e) => {
 		? ((e.target.value = ""), _(".data-v-emr1y6ie").classList.remove("show"))
 		: _(".data-v-emr1y6ie").classList.add("show");
 });
-
 components.messageInput.addEventListener("input", (e) => {
 	"" === e.target.innerText.trim() && (e.target.innerHTML = "");
 });
@@ -85,19 +82,20 @@ components.sendButton.onclick = function () {
 };
 
 // 替換並規避字符
+//white-space: pre;
 components.messageInput.onpaste = function (e) {
-	e.preventDefault(),
-		document.execCommand(
-			"insertHTML",
-			true,
-			(e.clipboardData || window.clipboardData)
-				.getData("text/plain")
-				.replace(/&([^;]+)/g, "&amp;$1")
-				.replaceAll("<", "&lt;")
-				.replaceAll(">", "&gt;")
-				.replaceAll(" ", "&nbsp;")
-				.replaceAll("\n", "<br>")
-		);
+	e.preventDefault();
+	document.execCommand(
+		"insertHTML",
+		true,
+		(e.clipboardData || window.clipboardData)
+			.getData("text/plain")
+			.replace(/&([^;]+)/g, "&amp;$1")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;")
+			.replaceAll(" ", "&nbsp;")
+			.replaceAll("\n", "<br>")
+	);
 };
 
 // 防止連結被拖到編輯器
@@ -149,15 +147,16 @@ function _A2() {
 			_(".data-v-nKzgeITl") && _(".data-v-nKzgeITl").remove();
 		let e = new Date().getHours();
 		_A25(
-			"Good {dl} and welcome to Structure".replace(
+			//Good {dl} and welcome to Structure
+			'Good <span style="color:#6cb6ff">{dl}</span> and welcome to Structure'.replaceAll(
 				"{dl}",
 				e >= 5 && e < 12
-					? "morning"
+					? "morning" //morning
 					: e >= 12 && e < 18
-					? "afternoon"
+					? "afternoon" //afternoon
 					: e >= 18 && e < 24
-					? "evening"
-					: "night"
+					? "evening" //evening
+					: "night" //night
 			),
 			"0",
 			"Official",
@@ -190,12 +189,15 @@ function _A17(e) {
 		n.appendChild(a);
 	var s = _A18(h).replaceAll("\n", "<br>");
 	(a.oncontextmenu = function (z) {
-		_GF && S119(z, e);
+		_GF && S119(z, e, a);
 	}),
 		(a.innerHTML = s),
-		(i.innerText = "You"),
-		msgfr.appendChild(t),
-		msgfr.scrollTo({ top: msgfr.scrollHeight, behavior: "smooth" }),
+		(i.innerHTML = '<div class="data-v-c4iCj2Gy">You</div>'),
+		components.messageArea.appendChild(t),
+		components.messageArea.scrollTo({
+			top: components.messageArea.scrollHeight,
+			behavior: "smooth",
+		}),
 		t.classList.add("data-v-iOw4dg0O");
 	try {
 		WriteData(s, ts, suid, window.user_id);
@@ -209,7 +211,7 @@ function _A17(e) {
 	var t = localStorage.getItem("_structure_invite_code");
 	t = null != t ? t : e;
 	try {
-		function a() {
+		function _ac() {
 			components.modalInput.onkeydown = () => {
 				return "";
 			};
@@ -237,7 +239,7 @@ function _A17(e) {
 						  (t.querySelector("span").textContent =
 								"The invitation code cannot be found"));
 					components.modalInput.onkeydown = (e) => {
-						13 === e.keyCode && a();
+						13 === e.keyCode && _ac();
 					};
 					components.modalButton.onclick = a;
 					components.modalButton.classList.remove("progress");
@@ -250,7 +252,7 @@ function _A17(e) {
 					components.modalButton.classList.remove("progress");
 					components.modalButton.innerHTML = "<span>OK</span>";
 					components.modalInput.onkeydown = (e) => {
-						13 === e.keyCode && a();
+						13 === e.keyCode && _ac();
 					};
 					components.modalButton.onclick = a;
 				});
@@ -261,9 +263,9 @@ function _A17(e) {
 			(components.modalInput.value = t),
 			_(".data-v-aAFBykLS").classList.remove("show"),
 			(components.modalInput.onkeydown = (e) => {
-				13 === e.keyCode && a();
+				13 === e.keyCode && _ac();
 			}),
-			(components.modalButton.onclick = a),
+			(components.modalButton.onclick = _ac),
 			_(".data-v-PgDa0opT").focus();
 	} catch (n) {
 		console.error(n);
@@ -272,7 +274,6 @@ function _A17(e) {
 	(window.ononline = () => {
 		window.location.reload();
 	});
-const msgfr = _(".data-v-ikyLwDf4");
 function _A25(e, t, a, nn) {
 	var n = document.createElement("div"),
 		i = document.createElement("div"),
@@ -305,19 +306,20 @@ function _A25(e, t, a, nn) {
 			let _n = document.createElement("div");
 			_n.innerHTML = e;
 			let _r = _n.textContent || _n.innerText || "";
-			_GF && S119(j, _r);
+			_GF && S119(j, _r, i);
 		}),
 		(i.innerHTML = e);
 	if (nn) {
 		console.log("verify account");
 	}
-	let o = msgfr.scrollTop,
-		d = msgfr.clientHeight,
-		c = msgfr.scrollHeight;
-	msgfr.appendChild(n),
-		80 > Math.abs(o + d - c) && msgfr.scrollTo({ top: c, behavior: "smooth" });
+	let o = components.messageArea.scrollTop,
+		d = components.messageArea.clientHeight,
+		c = components.messageArea.scrollHeight;
+	components.messageArea.appendChild(n),
+		80 > Math.abs(o + d - c) &&
+			components.messageArea.scrollTo({ top: c, behavior: "smooth" });
 }
-function S119(e, s) {
+function S119(e, s, f) {
 	var t = _(".data-v-aAFBykLS");
 	if (t.classList.value.includes("show")) t.classList.remove("show");
 	else {
@@ -325,6 +327,12 @@ function S119(e, s) {
 			await navigator.clipboard.writeText(s);
 			t.classList.remove("show");
 		};
+		t.querySelector(".item[data-conid='translate']").onclick = function () {
+			window.open(
+				`https://translate.google.com.tw/?sl=auto&tl=${navigator.language}&op=translate&text=${s}`
+			);
+		};
+
 		t.style.left = e.clientX + "px";
 		t.style.top = e.clientY + "px";
 		t.classList.add("show");
@@ -346,25 +354,22 @@ components.messageArea.addEventListener("scroll", function () {
 	_(".data-v-aAFBykLS").classList.remove("show");
 });
 
-function getCookie(cname) {
-	let name = cname + "=";
-	let decodedCookie = decodeURIComponent(document.cookie);
-	let ca = decodedCookie.split(";");
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) == " ") {
-			c = c.substring(1);
+function addRippleAnimation(element, color) {
+	element.addEventListener("click", (event) => {
+		const button = event.currentTarget;
+		const circle = document.createElement("span");
+		const diameter = Math.max(button.clientWidth, button.clientHeight);
+		circle.style.background = color;
+		circle.style.width = circle.style.height = diameter + "px";
+		circle.style.left = event.offsetX - diameter / 2 + "px";
+		circle.style.top = event.offsetY - diameter / 2 + "px";
+		circle.classList.add("ripple_effect");
+		const ripple = button.getElementsByClassName("ripple_effect")[0];
+		if (ripple) {
+			ripple.remove();
 		}
-		if (c.indexOf(name) == 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
+		button.appendChild(circle);
+	});
 }
 
-function setCookie(cname, cvalue, exdays) {
-	const d = new Date();
-	d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-	let expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
+addRippleAnimation(_(".data-v-8u3Iqtu9"), "#2d2d3866");
