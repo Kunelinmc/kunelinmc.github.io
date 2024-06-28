@@ -373,3 +373,14 @@ function addRippleAnimation(element, color) {
 }
 
 addRippleAnimation(_(".data-v-8u3Iqtu9"), "#2d2d3866");
+
+document.addEventListener(
+	"touchstart",
+	(event) => {
+		if (event.touches && event.touches.length > 1) {
+			// 禁止多指觸控
+			event.preventDefault();
+		}
+	},
+	{ passive: false }
+);
