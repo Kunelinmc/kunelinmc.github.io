@@ -375,8 +375,10 @@ function addRippleAnimation(element, color) {
 		button.appendChild(circle);
 	});
 }
-
 addRippleAnimation(_(".data-v-8u3Iqtu9"), "#2d2d3866");
+addRippleAnimation(_(".data-v-uwRtDpu4"), "#a8a8af71");
+addRippleAnimation(_(".header ._left .actionbtn"), "#a9a9a947");
+addRippleAnimation(_(".header ._right .actionbtn"), "#a9a9a947");
 
 document.addEventListener(
 	"touchstart",
