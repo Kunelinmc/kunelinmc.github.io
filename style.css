@@ -22,10 +22,15 @@ html body.swal2-height-auto {
 	color-scheme: dark;
 	color: #e2e3e5;
 }
-*:not(.xujXllYgW, .xtsARDHTI, .xtsARDHTI *, .xPgDa0opT) {
+* {
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+}
+.xujXllYgW,.xtsARDHTI, .xtsARDHTI *, .xPgDa0opT {
+	user-select: text !important;
+	-webkit-user-select: text !important;
+	-moz-user-select: text !important;
 }
 * {
 	font-family: "Rubik";
