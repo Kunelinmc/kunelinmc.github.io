@@ -22,10 +22,12 @@ html body.swal2-height-auto {
 	color-scheme: dark;
 	color: #e2e3e5;
 }
-* {
+*:not(.xujXllYgW, .xtsARDHTI, .xtsARDHTI *, .xPgDa0opT) {
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+}
+* {
 	font-family: "Rubik";
 }
 body.mobile .xMyW2iRSH,
