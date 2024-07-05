@@ -866,7 +866,6 @@ noscript {
 	border-radius: 8px;
 	width: max-content;
 	min-width: 160px;
-	max-width: calc(100% - 36px);
 	border: 1px solid #2f2f2f;
 	padding: 12px 18px;
 	cursor: default;
