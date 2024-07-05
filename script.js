@@ -591,10 +591,7 @@ function _A251(param, param2) {
 		c: suid,
 		d: window.user_id,
 	});
-	try {
-	} catch (r) {
-		console.log(r);
-	}
+	_("#file_uploader").value = null
 }
 
 function _Z641(s) {
@@ -606,6 +603,12 @@ function _Z641(s) {
 		_(".xHiNaAdY7").classList.remove("show");
 		_(".xLwq2C6gp").classList.remove("in");
 		_A251(s, p);
+		components.modalInput.onkeydown = function (e) {
+			13 === e.keyCode && e.preventDefault()
+		};
+		components.modalButton.onclick = function (e) {
+			e.preventDefault()
+		};
 	}
 }
 
@@ -616,7 +619,7 @@ _("#file_uploader").onchange = (e) => {
 		_(".xPgDa0opT").value = "";
 		_(".xPgDa0opT").style.display = "flex";
 		_(".x3OPJI1nX").style.display = "flex";
-		_(".x3OPJI1nX").innerText = "提示：一首好聽的歌、一張好看的圖片...";
+		_(".x3OPJI1nX").innerText = "提示：一首難聽的歌、一張醜到暴的圖片...";
 		_(".xK6zzHdt3").innerText = "請輸入文件敘述";
 		components.modalInput.onkeydown = function (e) {
 			13 === e.keyCode && _Z641(n);
@@ -633,5 +636,6 @@ _("#file_uploader").onchange = (e) => {
 		_(".x7dBirbNO").onclick = function () {
 			_(".xLwq2C6gp").classList.remove("in");
 		};
+		_("#file_uploader").value = null
 	}
 };
