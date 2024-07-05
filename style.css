@@ -862,6 +862,8 @@ noscript {
 	position: relative;
 	display: flex;
 	z-index: 29;
+	user-select: none;
+	-webkit-user-select: none;
 	text-decoration: none;
 	background-color: #161619;
 	border-radius: 8px;
