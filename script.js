@@ -227,9 +227,6 @@ function _A17(e) {
 	var c = _A18(t)
 		.replace(/(\r?\n){3,}/g, "\n\n")
 		.replaceAll("\n", "<br>");
-	(o.oncontextmenu = function (t) {
-		_GF && S119(t, e, n);
-	}),
 		(o.innerHTML = c),
 		(i.innerHTML = '<div class="xc4iCj2Gy">You</div>'),
 		components.messageArea.appendChild(n),
@@ -274,14 +271,7 @@ function _A25(e, t, n, o) {
 		r.appendChild(i),
 		(d.innerHTML = n);
 	(i.innerHTML = e), o && console.log("verify account");
-	if (!i.querySelector(".x7tEi32S9")) {
-		i.oncontextmenu = function (t) {
-			var n = document.createElement("div");
-			n.innerHTML = e;
-			var o = n.textContent || n.innerText || "";
-			_GF && S119(t, o, s);
-		};
-	}
+
 	var m = components.messageArea.scrollTop,
 		v = components.messageArea.clientHeight,
 		f = components.messageArea.scrollHeight;
@@ -554,6 +544,7 @@ function _A251(param, param2) {
 	o.classList.add("noc");
 	var x7tEi32S9 = document.createElement("a");
 	x7tEi32S9.setAttribute("draggable", "false")
+	x7tEi32S9.setAttribute("tabindex", "-1")
 	x7tEi32S9.href = "javascript:void(0);";
 	var x7AADV79i = document.createElement("div");
 	var xFUGLhuJT = document.createElement("div");
@@ -638,7 +629,7 @@ _("#file_uploader").onchange = (e) => {
 		_(".xPgDa0opT").style.display = "none";
 		_(".xK6zzHdt3").innerText = "文件太大了";
 		_(".x3OPJI1nX").style.display = "flex";
-		_(".x3OPJI1nX").innerText = "提示：換一個小點的文件試試";
+		_(".x3OPJI1nX").innerText = "提示：換一個小一點的文件試試";
 		_(".x7dBirbNO").onclick = function () {
 			_(".xLwq2C6gp").classList.remove("in");
 		};
