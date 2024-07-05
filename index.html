@@ -16,7 +16,7 @@
 			rel="stylesheet"
 		/>
 		<link
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
 			rel="stylesheet"
 		/>
 		<title>Structure</title>
@@ -169,6 +169,7 @@
 							<line x1="4" x2="20" y1="18" y2="18" />
 						</svg>
 					</div>
+					<span>Structure</span>
 				</div>
 				<div class="_right">
 					<div class="actionbtn">
@@ -520,7 +521,7 @@
 					(snapshot) => {
 						const progress =
 							(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-						document.querySelector(".xoW9yDyFK").style.width = progress + '%'
+						document.querySelector(".xoW9yDyFK").style.width = progress + "%";
 					},
 					(error) => {
 						console.error("上传失败：", error);
@@ -529,13 +530,13 @@
 						console.log("上传成功！");
 						getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
 							console.log("文件可下载链接：", downloadURL);
-							_fileURL = downloadURL
+							_fileURL = downloadURL;
 						});
 					}
 				);
 			}
 
-            window.uploadFile = uploadFile
+			window.uploadFile = uploadFile;
 		</script>
 		<script src="resources/popper.min.js"></script>
 		<script src="resources/tippy-bundle.umd.js"></script>
