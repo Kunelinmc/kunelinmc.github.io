@@ -578,6 +578,7 @@ noscript {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(5px) scale(0.97);
+	z-index: 9998;
 }
 .xLwq2C6gp .x6xGhJciS {
 	display: flex;
@@ -641,7 +642,7 @@ noscript {
 	white-space: nowrap;
 	border-radius: 5px;
 	gap: 8px;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 500;
 	padding: 10px 20px;
 	transition: 0.2s;
@@ -950,4 +951,17 @@ noscript {
 	margin-left: 3px;
 	margin-right: 3px;
 	margin-bottom: 6px;
+}
+
+#oml2d-stage #oml2d-tips {
+	display: none !important;
+}
+#oml2d-stage #oml2d-statusBar {
+	display: none !important;
+}
+#oml2d-stage #oml2d-menus {
+	display: none !important;
+}
+#oml2d-statusBar {
+	display: none !important;
 }
