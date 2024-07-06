@@ -378,7 +378,7 @@ body:has(.x9jgvlvYK:not(.show)) .xMyW2iRSH:hover {
 	min-height: 28px;
 	padding: 8px;
 	border-radius: 8px;
-	transition: .2s;
+	transition: 0.2s;
 	cursor: pointer;
 }
 .xqzuE31k1:hover {
@@ -575,7 +575,8 @@ noscript {
 }
 .xLwq2C6gp.in {
 	pointer-events: all;
-	opacity: 1;visibility: visible;
+	opacity: 1;
+	visibility: visible;
 	transform: translateY(5px) scale(0.97);
 }
 .xLwq2C6gp .x6xGhJciS {
@@ -602,10 +603,10 @@ noscript {
 	color: #fff;
 }
 .x3OPJI1nX {
-    font-size: 17px;
+	font-size: 17px;
 	text-align: center;
 	margin-top: 5px;
-    color: #e2e3e5;
+	color: #e2e3e5;
 }
 .x6xGhJciS .xPgDa0opT {
 	font-size: 19px;
@@ -848,9 +849,9 @@ noscript {
 }
 
 .tippy-box {
-	background-color: rgba(24, 24, 27, .89);
+	background-color: rgba(24, 24, 27, 0.89);
 	color: #dedfe0;
-	border: 1px solid rgba(38, 39, 43, .89);
+	border: 1px solid rgba(38, 39, 43, 0.89);
 	backdrop-filter: blur(4px);
 	border-radius: 8px;
 }
@@ -905,7 +906,7 @@ noscript {
 	height: 100%;
 	border-radius: 20px;
 	background-color: #3e63dd;
-	transition: .2s ease;
+	transition: 0.2s ease;
 }
 
 .x7tEi32S9 .x7AADV79i {
@@ -943,4 +944,10 @@ noscript {
 	font-size: 15px;
 	color: #c8c8cc;
 	text-decoration: none;
+}
+
+.x7zYNq8HG {
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 6px;
 }
