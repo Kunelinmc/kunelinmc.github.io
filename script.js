@@ -1,4 +1,3 @@
-//v24070608 all df
 var __awaiter =
 	(this && this.__awaiter) ||
 	function (thisArg, _arguments, P, generator) {
@@ -361,7 +360,7 @@ function addRippleAnimation(e, t) {
 		switch (e.keyCode) {
 			case 191:
 				"true" === components.messageInput.getAttribute("contenteditable") &&
-					document.activeElement !==	_(".xPgDa0opT") &&
+					document.activeElement !== _(".xPgDa0opT") &&
 					document.activeElement !== components.messageInput &&
 					document.activeElement !== components.searchInput &&
 					(e.preventDefault(), _(".xtsARDHTI").focus());
@@ -622,7 +621,7 @@ function _Z641(s) {
 }
 
 function _A5815(list) {
-	return list[Math.floor(Math.random() * list.length)]
+	return list[Math.floor(Math.random() * list.length)];
 }
 
 _("#file_uploader").onchange = (e) => {
@@ -632,11 +631,9 @@ _("#file_uploader").onchange = (e) => {
 		_(".xPgDa0opT").value = "";
 		_(".xPgDa0opT").style.display = "flex";
 		_(".x3OPJI1nX").style.display = "flex";
-		_(".x3OPJI1nX").innerText = "提示：{a1}、{a2}...".replace(
-			"{a1}", _A5815(["好聽的歌", "重要的報告", "一張吸睛的風景照"])
-		).replace(
-			"{a2}", _A5815(["怪物的圖鑑", "今天的回家作業", "我也不知道"])
-		)
+		_(".x3OPJI1nX").innerText = "提示：{a1}、{a2}..."
+			.replace("{a1}", _A5815(["好聽的歌", "重要的報告", "一張吸睛的風景照"]))
+			.replace("{a2}", _A5815(["怪物的圖鑑", "今天的回家作業", "我也不知道"]));
 		_(".xK6zzHdt3").innerText = "請輸入文件敘述";
 		components.modalInput.onkeydown = function (e) {
 			13 === e.keyCode && _Z641(n);
@@ -656,3 +653,14 @@ _("#file_uploader").onchange = (e) => {
 		_("#file_uploader").value = null;
 	}
 };
+
+if (!isMobileDevice) {
+	OML2D.loadOml2d({
+		models: [
+			{
+				path: "./sagiri.model.json",
+				scale: 0.15,
+			},
+		]
+	});	
+}
