@@ -654,13 +654,11 @@ _("#file_uploader").onchange = (e) => {
 	}
 };
 
-if (!isMobileDevice) {
-	OML2D.loadOml2d({
-		models: [
-			{
-				path: "./sagiri.model.json",
-				scale: 0.15,
-			},
-		]
-	});	
-}
+OML2D.loadOml2d({
+	models: [
+		{
+			path: "./sagiri.model.json",
+			scale: 0.15,
+		},
+	],
+});
