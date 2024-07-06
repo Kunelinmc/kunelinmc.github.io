@@ -952,16 +952,3 @@ noscript {
 	margin-right: 3px;
 	margin-bottom: 6px;
 }
-
-#oml2d-stage #oml2d-tips {
-	display: none !important;
-}
-#oml2d-stage #oml2d-statusBar {
-	display: none !important;
-}
-#oml2d-stage #oml2d-menus {
-	display: none !important;
-}
-#oml2d-statusBar {
-	display: none !important;
-}
