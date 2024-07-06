@@ -111,7 +111,7 @@
 		</div>
 		<div class="sidebar">
 			<div class="xCzYCeh7x">
-				<a class="xbfRemN6Z" href="./">Structure</a>
+				<a class="xbfRemN6Z" href="./" tabindex="-1">Structure</a>
 			</div>
 			<div class="x8u3Iqtu9">
 				<svg
@@ -170,25 +170,6 @@
 						</svg>
 					</div>
 					<span>Structure</span>
-				</div>
-				<div class="_right">
-					<div class="actionbtn">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<circle cx="12" cy="12" r="1" />
-							<circle cx="12" cy="5" r="1" />
-							<circle cx="12" cy="19" r="1" />
-						</svg>
-					</div>
 				</div>
 			</div>
 			<div class="xikyLwDf4 xVjpzmyej">
@@ -255,7 +236,7 @@
 		<div class="xLwq2C6gp">
 			<div class="x6xGhJciS">
 				<div class="xK6zzHdt3">請輸入邀請代碼</div>
-				<div class="x3OPJI1nX" style="display: none;"></div>
+				<div class="x3OPJI1nX" style="display: none"></div>
 				<input
 					autofocus
 					class="xPgDa0opT"
@@ -401,6 +382,11 @@
 				set,
 				onValue,
 			} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+			import {
+				getFirestore,
+				collection,
+				getDocs,
+			} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 			const firebaseConfig = {
 				apiKey: "AIzaSyAp73V5ZsBUtpy4kS3",
@@ -417,6 +403,7 @@
 			const firebaseApp = initializeApp(firebaseConfig);
 			const storage = getStorage(firebaseApp);
 			const database = getDatabase(firebaseApp);
+			const db = getFirestore(firebaseApp);
 
 			window.GetData = async function (key) {
 				const dataRef = databaseRef(database, key);
@@ -495,6 +482,15 @@
 				);
 			}
 
+			async function fetchData() {
+				const querySnapshot = await getDocs(
+					collection(db, "history")
+				);
+				querySnapshot.forEach((doc) => {
+					console.log(doc.data());
+				});
+			}
+			window.fetchData = fetchData
 			window.uploadFile = uploadFile;
 		</script>
 		<script src="script.js"></script>
