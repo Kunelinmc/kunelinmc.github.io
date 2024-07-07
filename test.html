@@ -107,10 +107,6 @@
 				min-width: 28px;
 				min-height: 28px;
 			}
-
-			::selection {
-				background-color: #c3e0f0;
-			}
 		</style>
 		<div class="app">
 			<div class="xZpiWbDwC">
@@ -139,7 +135,7 @@
 						/>
 					</svg>
 					<div class="xOuZT7n93">
-						這是一個由冠霖製作的聊天機器人，只會簡單的中文問題，無法處理複雜任務
+						這是一個由冠霖做的聊天機器人，只會簡單的中文問題，無法處理複雜任務
 					</div>
 				</div>
 			</div>
@@ -147,10 +143,11 @@
 				<input
 					type="text"
 					placeholder="提示詞"
+					autofocus
 					maxlength="20"
 					class="xio2TIHCk"
 				/>
-				<button class="xhq443awx">
+				<div class="xhq443awx">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
@@ -172,8 +169,8 @@
 							stroke-linejoin="round"
 						/>
 					</svg>
-					<span>生成</span>
-				</button>
+					<div>生成</div>
+				</div>
 			</div>
 		</div>
 		<script>
@@ -231,8 +228,6 @@
 				["說一個故事", "不要"],
 				["告訴我一個故事", "不要"],
 				["你會說英文", "不會"],
-				["給你100塊", "感謝"],
-				["送你100塊", "感謝"],
 				["誰是笨蛋", "你啊"],
 				["誰是傻逼", "你啊"],
 				["誰是最聰明的人", "我!"],
@@ -256,6 +251,8 @@
 				["我剛剛問你什麼", "我忘了"],
 				["我剛剛說什麼", "我忘了"],
 				["你剛剛說什麼", "我忘了"],
+				["你喜歡吃什麼", "我喜歡吃冰淇淋!"],
+				["你最愛吃什麼", "我喜歡吃冰淇淋!"],
 			];
 
 			const input = document.querySelector(".xio2TIHCk"),
@@ -360,7 +357,7 @@
 				});
 			}
 
-			button.onclick = () => {
+			function before_ge() {
 				if (input.value.trim() !== "") {
 					messagebox.innerHTML += `<div class="xLBLr4qmz">
 					<svg
@@ -389,6 +386,16 @@
 				</div>`;
 					generator(input.value);
 					input.value = "";
+				}
+			}
+
+			button.onclick = () => {
+				before_ge();
+			};
+
+			input.onkeydown = (e) => {
+				if (e.keyCode == 13) {
+					before_ge();
 				}
 			};
 		</script>
