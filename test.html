@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+			}
+
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #fffefb;
+			}
+
+			* {
+				font-family: "Noto Sans TC";
+				font-weight: 500;
+			}
+
+			.app {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 80%;
+				width: 400px;
+				max-width: calc(100% - 60px);
+				background-color: #f5f4f1;
+				padding: 15px;
+				border-radius: 12px;
+			}
+			.xZpiWbDwC {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				flex-grow: 1;
+				padding-bottom: 60px;
+				overflow: auto;
+			}
+
+			.xZpiWbDwC .xLBLr4qmz {
+				display: flex;
+				flex-direction: row;
+				gap: 12px;
+				height: max-content;
+				font-size: 19px;
+				line-height: 25px;
+				border-radius: 6px;
+				padding: 5px;
+				min-height: 40px;
+				align-items: center;
+			}
+
+			.xowAiAIXo {
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+				height: 50px;
+				gap: 4px;
+				user-select: none;
+			}
+
+			.xio2TIHCk {
+				font-size: 19px;
+				border-top-left-radius: 8px;
+				border-bottom-left-radius: 8px;
+				border: 0;
+				outline: none;
+				background-color: #e2e2e2;
+				padding: 12px 16px;
+				flex-grow: 1;
+			}
+
+			.xhq443awx {
+				display: flex;
+				align-items: center;
+				font-size: 19px;
+				white-space: nowrap;
+				background-color: #e2e2e2;
+				border: 0;
+				cursor: pointer;
+				padding: 12px;
+				outline: none;
+				gap: 4px;
+				aspect-ratio: 1;
+				border-top-right-radius: 8px;
+				border-bottom-right-radius: 8px;
+				transition: 0.2s;
+			}
+			.xhq443awx:hover {
+				background-color: #cfcfcf;
+			}
+			.xLBLr4qmz {
+				min-width: 28px;
+				min-height: 28px;
+			}
+
+			::selection {
+				background-color: #c3e0f0;
+			}
+		</style>
+		<div class="app">
+			<div class="xZpiWbDwC">
+				<div class="xLBLr4qmz">
+					<svg
+						class="xLBLr4qmz"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width="28"
+						height="28"
+						color="#000000"
+						fill="none"
+					>
+						<path
+							d="M22 11.5667C22 16.8499 17.5222 21.1334 12 21.1334C11.3507 21.1343 10.7032 21.0742 10.0654 20.9545C9.60633 20.8682 9.37678 20.8251 9.21653 20.8496C9.05627 20.8741 8.82918 20.9948 8.37499 21.2364C7.09014 21.9197 5.59195 22.161 4.15111 21.893C4.69874 21.2194 5.07275 20.4112 5.23778 19.5448C5.33778 19.0148 5.09 18.5 4.71889 18.1231C3.03333 16.4115 2 14.1051 2 11.5667C2 6.28357 6.47778 2 12 2C17.5222 2 22 6.28357 22 11.5667Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+						<path
+							d="M11.9955 12H12.0045M15.991 12H16M8 12H8.00897"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+					<div class="xOuZT7n93">
+						這是一個由冠霖製作的聊天機器人，只會簡單的中文問題，無法處理複雜任務
+					</div>
+				</div>
+			</div>
+			<div class="xowAiAIXo">
+				<input
+					type="text"
+					placeholder="提示詞"
+					maxlength="20"
+					class="xio2TIHCk"
+				/>
+				<button class="xhq443awx">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width="22"
+						height="22"
+						color="#000000"
+						fill="none"
+					>
+						<path
+							d="M15 2L15.5387 4.39157C15.9957 6.42015 17.5798 8.00431 19.6084 8.46127L22 9L19.6084 9.53873C17.5798 9.99569 15.9957 11.5798 15.5387 13.6084L15 16L14.4613 13.6084C14.0043 11.5798 12.4202 9.99569 10.3916 9.53873L8 9L10.3916 8.46127C12.4201 8.00431 14.0043 6.42015 14.4613 4.39158L15 2Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+						<path
+							d="M7 12L7.38481 13.7083C7.71121 15.1572 8.84275 16.2888 10.2917 16.6152L12 17L10.2917 17.3848C8.84275 17.7112 7.71121 18.8427 7.38481 20.2917L7 22L6.61519 20.2917C6.28879 18.8427 5.15725 17.7112 3.70827 17.3848L2 17L3.70827 16.6152C5.15725 16.2888 6.28879 15.1573 6.61519 13.7083L7 12Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+					</svg>
+					<span>生成</span>
+				</button>
+			</div>
+		</div>
+		<script>
+			function _A5815(list) {
+				return list[Math.floor(Math.random() * list.length)];
+			}
+
+			const days = [
+				"星期日",
+				"星期一",
+				"星期二",
+				"星期三",
+				"星期四",
+				"星期五",
+				"星期六",
+			];
+
+			const animals = ["老虎", "獅子", "羊", "牛", "雞", "狗", "兔子", "猴子"];
+
+			const weathers = ["雷雨", "陰天", "晴天", "雨天"];
+
+			const data = [
+				["", "欸嘿"],
+				["現在天氣如何", `是${_A5815(weathers)}`],
+				["現在天氣怎麼樣", `是${_A5815(weathers)}`],
+				["今天天氣怎麼樣", `是${_A5815(weathers)}`],
+				["今天天氣如何", `是${_A5815(weathers)}`],
+				["天氣如何", `是${_A5815(weathers)}`],
+				["今天是星期幾", `今天是${_A5815(days)}`],
+				["現在幾點", "我沒有存取時間的能力"],
+				["你叫什麼名字", "我叫機器人"],
+				["你的名字叫什麼", "我叫機器人"],
+				["我該如何稱呼你", "你可以叫我機器人"],
+				["我該叫你什麼", "你可以叫我機器人"],
+				["我該叫你甚麼", "你可以叫我機器人"],
+				["我要如何稱呼你", "你可以叫我機器人"],
+				["你好", "你好!"],
+				["您好", "你好"],
+				["哈哈", "哪裡好笑了?"],
+				["你會做什麼", "我會說話!"],
+				["你會做甚麼", "我會說話!"],
+				["你現在在做甚麼", "我在和智障聊天"],
+				["你現在在做什麼", "我在和智障聊天"],
+				["你現在在幹嘛", "我在和智障聊天"],
+				["你在幹嘛", "我在和智障聊天"],
+				["你在做什麼", "我在和智障聊天"],
+				["你甚麼時候生日", "今天"],
+				["你可以幫我做事", "不行"],
+				["你可以幫我", "不可以"],
+				["你可以告訴我", "不可以"],
+				["你知道我是誰", "不知道"],
+				["太棒了", "謝謝誇獎"],
+				["你好棒", "謝謝誇獎"],
+				["講一個故事", "不要"],
+				["說一個故事", "不要"],
+				["告訴我一個故事", "不要"],
+				["你會說英文", "不會"],
+				["給你100塊", "感謝"],
+				["送你100塊", "感謝"],
+				["誰是笨蛋", "你啊"],
+				["誰是傻逼", "你啊"],
+				["誰是最聰明的人", "我!"],
+				["告訴我一種動物", `${_A5815(animals)}`],
+				["你喜歡什麼動物", `${_A5815(animals)}`],
+				["你喜歡哪個動物", `${_A5815(animals)}`],
+				["你喜歡什摩", "我沒有喜歡的東西"],
+				["我叫", "我知道，你不用跟我說"],
+				["我是", "我知道，你不用跟我說"],
+				["我遇到", "關我屁事"],
+				["你的心情如何", "我心情很好"],
+				["你的心情怎麼樣", "我心情很好"],
+				["問我問題", "不要"],
+				["你覺得比較還是比較", "我選A"],
+				["你覺得哪個比較", "我選B"],
+				["你認為哪個比較", "我選A"],
+				["在哪裡", "我不知道"],
+				["換個話題", "好啊"],
+				["寫一首詩", "舉頭望明月，低頭吃便當"],
+				["你住在哪裡", "你家"],
+				["我剛剛問你什麼", "我忘了"],
+				["我剛剛說什麼", "我忘了"],
+				["你剛剛說什麼", "我忘了"],
+			];
+
+			const input = document.querySelector(".xio2TIHCk"),
+				button = document.querySelector(".xhq443awx"),
+				messagebox = document.querySelector(".xZpiWbDwC");
+
+			function similar(s, t, f) {
+				if (!s || !t) {
+					return 0;
+				}
+				var l = s.length > t.length ? s.length : t.length;
+				var n = s.length;
+				var m = t.length;
+				var d = [];
+				f = f || 3;
+				var min = function (a, b, c) {
+					return a < b ? (a < c ? a : c) : b < c ? b : c;
+				};
+				var i, j, si, tj, cost;
+				if (n === 0) return m;
+				if (m === 0) return n;
+				for (i = 0; i <= n; i++) {
+					d[i] = [];
+					d[i][0] = i;
+				}
+				for (j = 0; j <= m; j++) {
+					d[0][j] = j;
+				}
+				for (i = 1; i <= n; i++) {
+					si = s.charAt(i - 1);
+					for (j = 1; j <= m; j++) {
+						tj = t.charAt(j - 1);
+						if (si === tj) {
+							cost = 0;
+						} else {
+							cost = 1;
+						}
+						d[i][j] = min(
+							d[i - 1][j] + 1,
+							d[i][j - 1] + 1,
+							d[i - 1][j - 1] + cost
+						);
+					}
+				}
+				let res = 1 - d[n][m] / l;
+				return res.toFixed(f);
+			}
+
+			function findIndexOfMax(arr) {
+				if (arr.length === 0) {
+					return -1;
+				}
+
+				let max = arr[0];
+				let maxIndex = 0;
+
+				for (let i = 1; i < arr.length; i++) {
+					if (arr[i] > max) {
+						max = arr[i];
+						maxIndex = i;
+					}
+				}
+
+				return maxIndex;
+			}
+			function generator(prompt) {
+				var dl = [];
+				data.forEach((item) => {
+					dl.push(similar(item[0], prompt, 5));
+				});
+				// messagebox.innerHTML += data[findIndexOfMax(dl)][1];
+				messagebox.innerHTML += `<div class="xLBLr4qmz">
+					<svg
+                        class="xLBLr4qmz"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width="28"
+						height="28"
+						color="#000000"
+						fill="none"
+					>
+						<path
+							d="M7 4.5C5.34315 4.5 4 5.84315 4 7.5C4 8.06866 4.15822 8.60037 4.43304 9.0535C3.04727 9.31855 2 10.537 2 12C2 13.463 3.04727 14.6814 4.43304 14.9465M7 4.5C7 3.11929 8.11929 2 9.5 2C10.8807 2 12 3.11929 12 4.5V19.5C12 20.8807 10.8807 22 9.5 22C8.11929 22 7 20.8807 7 19.5C5.34315 19.5 4 18.1569 4 16.5C4 15.9313 4.15822 15.3996 4.43304 14.9465M7 4.5C7 5.31791 7.39278 6.04408 8 6.50018M4.43304 14.9465C4.78948 14.3588 5.34207 13.9032 6 13.6707"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+						<path
+							d="M17 19.5C18.6569 19.5 20 18.1569 20 16.5C20 15.9313 19.8418 15.3996 19.567 14.9465C20.9527 14.6814 22 13.463 22 12C22 10.537 20.9527 9.31855 19.567 9.0535M17 19.5C17 20.8807 15.8807 22 14.5 22C13.1193 22 12 20.8807 12 19.5L12 4.5C12 3.11929 13.1193 2 14.5 2C15.8807 2 17 3.11929 17 4.5C18.6569 4.5 20 5.84315 20 7.5C20 8.06866 19.8418 8.60037 19.567 9.0535M17 19.5C17 18.6821 16.6072 17.9559 16 17.4998M19.567 9.0535C19.2105 9.64121 18.6579 10.0967 18 10.3293"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+					<div class="xOuZT7n93">${data[findIndexOfMax(dl)][1]}</div>
+				</div>`;
+				messagebox.scrollTo({
+					top: messagebox.scrollHeight,
+					behavior: "smooth",
+				});
+			}
+
+			button.onclick = () => {
+				if (input.value.trim() !== "") {
+					messagebox.innerHTML += `<div class="xLBLr4qmz">
+					<svg
+                        class="xLBLr4qmz"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width="28"
+						height="28"
+						color="#000000"
+						fill="none"
+					>
+						<path
+							d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+						<path
+							d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+						/>
+					</svg>
+					<div class="xOuZT7n93">${input.value}</div>
+				</div>`;
+					generator(input.value);
+					input.value = "";
+				}
+			};
+		</script>
+	</body>
+</html>
