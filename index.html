@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,7 +7,6 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
-		<link rel="manifest" href="/manifest.json" />
 		<link rel="shortcut icon" href="icon.png" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -253,7 +253,7 @@
 			</div>
 		</div>
 		<div class="xaAFBykLS">
-			<div class="item" data-conid="edit">
+			<div class="item" data-event="_edit">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
@@ -271,7 +271,7 @@
 				</svg>
 				<div class="cont">Edit</div>
 			</div>
-			<div class="item" data-conid="copy">
+			<div class="item" data-event="_copy">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
@@ -289,7 +289,7 @@
 				<div class="cont">Copy</div>
 			</div>
 			<div class="separator"></div>
-			<div class="item" data-conid="translate">
+			<div class="item" data-event="_translate">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
@@ -310,7 +310,7 @@
 				</svg>
 				<div class="cont">Translate</div>
 			</div>
-			<div class="item" data-conid="share">
+			<div class="item" data-event="_share">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
@@ -328,7 +328,7 @@
 				<div class="cont">Share</div>
 			</div>
 			<div class="separator"></div>
-			<div class="item rd" data-conid="delete">
+			<div class="item rd" data-event="_delete">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="18"
@@ -382,11 +382,6 @@
 				set,
 				onValue,
 			} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-			import {
-				getFirestore,
-				collection,
-				getDocs,
-			} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 			const firebaseConfig = {
 				apiKey: "AIzaSyAp73V5ZsBUtpy4kS3",
@@ -403,7 +398,6 @@
 			const firebaseApp = initializeApp(firebaseConfig);
 			const storage = getStorage(firebaseApp);
 			const database = getDatabase(firebaseApp);
-			const db = getFirestore(firebaseApp);
 
 			window.GetData = async function (key) {
 				const dataRef = databaseRef(database, key);
@@ -481,19 +475,7 @@
 					}
 				);
 			}
-
-			async function fetchData() {
-				const querySnapshot = await getDocs(
-					collection(db, "history")
-				);
-				querySnapshot.forEach((doc) => {
-					console.log(doc.data());
-				});
-			}
-			window.fetchData = fetchData
-			window.uploadFile = uploadFile;
 		</script>
-		<script src="https://unpkg.com/oh-my-live2d@latest"></script>
 		<script src="script.js"></script>
 	</body>
 </html>
