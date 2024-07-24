@@ -137,6 +137,9 @@ body.mobile .xMyW2iRSH * {
 	font-size: 20px;
 	outline: 0;
 	width: 100%;
+	padding: 0;
+	padding-inline: 0;
+	padding-block: 0;
 	color: #e2e3e5;
 	height: 32px;
 	background-color: transparent;
@@ -1173,19 +1176,6 @@ noscript {
 	height: 1px;
 	background-color: #3b4046;
 	margin: 5px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 10px 0;
-	font-weight: 500 !important;
-}
-strong {
-	font-weight: 500 !important;
 }
 
 @keyframes flashing_caret {
