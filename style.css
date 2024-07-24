@@ -67,7 +67,7 @@ body.mobile .xMyW2iRSH * {
 .main {
 	justify-content: space-between;
 	overflow: auto;
-	transition: left .4s ease;
+	transition: transform .31s ease;
 }
 .sidebar,
 .x8FrVw7Ca {
@@ -769,8 +769,9 @@ noscript {
 	}
 	.main {
 		position: absolute;
-		left: 200%;
+		transform: translateX(100%);
 		top: 0;
+		right: 0;
 		width: 100vw;
 		bottom: 0;
 		z-index: 25;
@@ -1103,8 +1104,7 @@ noscript {
 }
 
 .main.x8VAGH6N2 {
-	left: 0;
-	right: 0;
+	transform: translateX(0);
 }
 
 .x2fP9fkxS .xkl384HTx {
