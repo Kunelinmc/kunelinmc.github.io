@@ -17,9 +17,10 @@
 			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="stylesheet" href="resources/github-dark-dimmed.css" />
 		<title>Structure</title>
 	</head>
-	<body class="app">
+	<body class="app" theme="dark">
 		<div class="sidebar">
 			<div class="xCzYCeh7x">
 				<a class="xbfRemN6Z" href="./" tabindex="-1" translate="no"
@@ -53,76 +54,24 @@
 			</div>
 			<div class="x8FrVw7Ca">
 				<div class="xemr1y6ie">
-					<div class="x2fP9fkxS active" tabindex="0" data-roomId="aa0000001" data-roomName="冠霖的聊天室">
-						<div class="xQ65c0Nkc">
-							<div class="xybvM5cRF">冠霖的聊天室</div>
-							<div class="xT3Ta8vKw">0 則對話 • 現在</div>
-						</div>
-						<div class="xkl384HTx">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="1" />
-								<circle cx="12" cy="5" r="1" />
-								<circle cx="12" cy="19" r="1" />
-							</svg>
-						</div>
-					</div>
-					<div class="x2fP9fkxS" tabindex="0" data-roomId="aa0000002" data-roomName="測試">
-						<div class="xQ65c0Nkc">
-							<div class="xybvM5cRF">測試</div>
-							<div class="xT3Ta8vKw">1,539 則對話 • 昨天</div>
-						</div>
-						<div class="xkl384HTx">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="1" />
-								<circle cx="12" cy="5" r="1" />
-								<circle cx="12" cy="19" r="1" />
-							</svg>
-						</div>
-					</div>
-					<div class="x2fP9fkxS" tabindex="0" data-roomId="aa0000003" data-roomName="官方通知">
-						<div class="xQ65c0Nkc">
-							<div class="xybvM5cRF">官方通知</div>
-							<div class="xT3Ta8vKw">93,242 則對話 • 昨天</div>
-						</div>
-						<div class="xkl384HTx">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							>
-								<circle cx="12" cy="12" r="1" />
-								<circle cx="12" cy="5" r="1" />
-								<circle cx="12" cy="19" r="1" />
-							</svg>
-						</div>
+					<div class="spinner">
+						<svg
+							class="xxA4Cqchz"
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke-width="2	"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M21 12a9 9 0 1 1-6.219-8.56" />
+						</svg>
+						<span class="xkT2bkntT">載入中...</span>
 					</div>
 				</div>
+				<div class="xPe6hJRD1"></div>
 			</div>
 		</div>
 		<div class="main">
@@ -130,12 +79,12 @@
 				<div class="xMyenRl7K">
 					<div class="x8JU9DbQZ">
 						<svg
+							class="xvx75W2b4"
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"
 							height="24"
 							viewBox="0 0 24 24"
 							fill="none"
-							stroke="currentColor"
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -180,121 +129,165 @@
 				</div>
 			</div>
 		</div>
-		<div class="xIvJdFhV6">
-			<div class="xvyZJKm8c"></div>
-		</div>
-		<div class="xLwq2C6gp">
-			<div class="x6xGhJciS">
-				<div class="xK6zzHdt3">立即登入</div>
-				<div class="x3OPJI1nX" style="display: none"></div>
-				<div class="x0dJyyCXg">
-					<input type="text" placeholder="郵箱地址" />
+		<div class="xUO0M1BpL">
+			<div class="overlay"></div>
+			<div class="content">
+				<div class="xrYn5ZY3v">帳號登入</div>
+				<div class="xRRuA0Z3S">
+					<div class="xYIKBnbHS xLO5aWUNC" tabindex="0">
+						<svg class="xGBqJjpdr" viewBox="0 0 20 20">
+							<path
+								d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z"
+								fill="#4285F4"
+							></path>
+							<path
+								d="M13.46 15.13c-.83.59-1.96 1-3.46 1-2.64 0-4.88-1.74-5.68-4.15H1.07v2.52C2.72 17.75 6.09 20 10 20c2.7 0 4.96-.89 6.62-2.42l-3.16-2.45z"
+								fill="#34A853"
+							></path>
+							<path
+								d="M3.99 10c0-.69.12-1.35.32-1.97V5.51H1.07A9.973 9.973 0 000 10c0 1.61.39 3.14 1.07 4.49l3.24-2.52c-.2-.62-.32-1.28-.32-1.97z"
+								fill="#FBBC05"
+							></path>
+							<path
+								d="M10 3.88c1.88 0 3.13.81 3.85 1.48l2.84-2.76C14.96.99 12.7 0 10 0 6.09 0 2.72 2.25 1.07 5.51l3.24 2.52C5.12 5.62 7.36 3.88 10 3.88z"
+								fill="#EA4335"
+							></path>
+						</svg>
+						<div>使用 Google 登入</div>
+					</div>
+					<div class="xYIKBnbHS xXyiikhrj" tabindex="0">
+						<svg
+							class="xGBqJjpdr"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 21 21"
+						>
+							<path fill="#f35325" d="M0 0h10v10H0z" />
+							<path fill="#81bc06" d="M11 0h10v10H11z" />
+							<path fill="#05a6f0" d="M0 11h10v10H0z" />
+							<path fill="#ffba08" d="M11 11h10v10H11z" />
+						</svg>
+						<div>使用 Microsoft 登入</div>
+					</div>
 				</div>
-				<div class="x0dJyyCXg">
-					<input type="password" placeholder="密碼" />
-				</div>
-				<div class="xHiNaAdY7">
-					<span>找不到邀請碼</span>
-				</div>
-				<div class="x7dBirbNO" tabindex="0" translate="no">OK</div>
-			</div>
-		</div>
-		<div class="xaAFBykLS">
-			<div class="menuitem" data-event="_edit">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="18"
-					height="18"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="#e2e3e5"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path
-						d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
-					/>
-				</svg>
-				<div class="cont">Edit</div>
-			</div>
-			<div class="menuitem" data-event="_copy">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="18"
-					height="18"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="#e2e3e5"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-					<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-				</svg>
-				<div class="cont">Copy</div>
-			</div>
-			<div class="separator"></div>
-			<div class="menuitem" data-event="_translate">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="18"
-					height="18"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="#e2e3e5"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="m5 8 6 6" />
-					<path d="m4 14 6-6 2-3" />
-					<path d="M2 5h12" />
-					<path d="M7 2h1" />
-					<path d="m22 22-5-10-5 10" />
-					<path d="M14 18h6" />
-				</svg>
-				<div class="cont">Translate</div>
-			</div>
-			<div class="menuitem" data-event="_share">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="18"
-					height="18"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="#e2e3e5"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<polyline points="15 17 20 12 15 7" />
-					<path d="M4 18v-2a4 4 0 0 1 4-4h12" />
-				</svg>
-				<div class="cont">Share</div>
-			</div>
-			<div class="separator"></div>
-			<div class="menuitem rd" data-event="_delete">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="18"
-					height="18"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="#e2e3e5"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M3 6h18" />
-					<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-					<path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-				</svg>
-				<div class="cont">Delete</div>
 			</div>
 		</div>
-		<script src="database.js" type="module"></script>
 		<script src="script.js"></script>
+		<script type="module">
+			const googleSiginBtn = _(".xYIKBnbHS.xLO5aWUNC");
+			const sigInframe = _(".xUO0M1BpL .content");
+
+			const GoogleSigInSuccess = function (name, email, avatar) {
+				sigInframe.innerHTML = `<div class="xJ0pEZGEO">已成功登入Google帳號</div>
+				<div class="xDmLoXo3E">
+					<img
+						class="xm7NzrczQ"
+						draggable="false"
+						src="${avatar}"
+						alt="avatar"
+					/>
+					<div class="xDLBHn55v">
+						<div class="xQ6IT8O6S">${name}</div>
+						<div class="xPnpcvswL">${email}</div>
+					</div>
+				</div>
+				<div class="xaOvV3A91">
+					<div class="xFAubsy45" tabindex="0">完成</div>
+				</div>`;
+			};
+
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+
+			const firebaseConfig = {
+				apiKey: "AIzaSyAp73V5ZsBUtpy4kS3-QyGirGSpz71DPWo",
+				authDomain: "smiling-theory-397204.firebaseapp.com",
+				databaseURL:
+					"https://smiling-theory-397204-default-rtdb.asia-southeast1.firebasedatabase.app",
+				projectId: "smiling-theory-397204",
+				storageBucket: "smiling-theory-397204.appspot.com",
+				messagingSenderId: "360479398694",
+				appId: "1:360479398694:web:05b7df5ce277f89ea8ffe7",
+				measurementId: "G-6BKTT1K7D1",
+			};
+
+			import {
+				getAuth,
+				signInWithPopup,
+				GoogleAuthProvider,
+				onAuthStateChanged,
+				signOut,
+			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+
+			initializeApp(firebaseConfig);
+
+			const provider = new GoogleAuthProvider();
+			const auth = getAuth();
+
+			const SignInWidthGoogle = function () {
+				signInWithPopup(auth, provider)
+					.then((result) => {
+						const credential = GoogleAuthProvider.credentialFromResult(result);
+						const token = credential.accessToken;
+						const user = result.user;
+						GoogleSigInSuccess(user.displayName, user.email, user.photoURL);
+					})
+					.catch((error) => {
+						const errorCode = error.code;
+						const errorMessage = error.message;
+						const email = error.customData.email;
+						const credential = GoogleAuthProvider.credentialFromError(error);
+						console.log(errorMessage);
+					});
+			};
+
+			onAuthStateChanged(auth, (user) => {
+				if (user) {
+					// User is signed in, see docs for a list of available properties
+					// https://firebase.google.com/docs/reference/js/firebase.User
+					console.log("User is signed in: ", user);
+					// Update UI to reflect user is signed in
+				} else {
+					document.querySelector(".xUO0M1BpL").classList.add("show");
+					// User is signed out
+					console.log("User is signed out");
+					// Update UI to reflect user is signed out
+				}
+			});
+
+			window.logout = () => {
+				signOut(auth)
+					.then(() => {
+						console.log("User signed out");
+					})
+					.catch((error) => {
+						console.error("Sign out error", error);
+					});
+			};
+
+			googleSiginBtn.onclick = function () {
+				sigInframe.innerHTML = `<div class="spinner">
+					<svg
+						class="xxA4Cqchz"
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke-width="2	"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M21 12a9 9 0 1 1-6.219-8.56" />
+					</svg>
+					<span class="xkT2bkntT">等待中...</span>
+				</div>`;
+				SignInWidthGoogle();
+			};
+
+			googleSiginBtn.onkeydown = function (e) {
+				if (e.keyCode === 13) {
+					window.SignInWidthGoogle();
+				}
+			};
+		</script>
 	</body>
 </html>
