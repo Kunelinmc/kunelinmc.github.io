@@ -23,9 +23,9 @@
 	<body class="app" theme="dark">
 		<div class="sidebar">
 			<div class="xCzYCeh7x">
-				<a class="xbfRemN6Z" href="./" tabindex="-1" translate="no"
-					>Structure</a
-				>
+				<a class="xbfRemN6Z" href="./" tabindex="-1" translate="no">
+					Structure
+				</a>
 			</div>
 			<div class="x8u3Iqtu9">
 				<svg
@@ -45,11 +45,12 @@
 				</svg>
 				<input
 					class="xujXllYgW"
+					translate="no"
 					type="text"
 					placeholder="Search..."
 					disabled
 					maxlength="25"
-					tabindex="0"
+					tabindex="-1"
 				/>
 			</div>
 			<div class="x8FrVw7Ca">
@@ -71,7 +72,24 @@
 						<span class="xkT2bkntT">載入中...</span>
 					</div>
 				</div>
-				<div class="xPe6hJRD1"></div>
+				<div class="xPe6hJRD1">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+						<polyline points="16 17 21 12 16 7" />
+						<line x1="21" x2="9" y1="12" y2="12" />
+					</svg>
+					<div>登出</div>
+				</div>
 			</div>
 		</div>
 		<div class="main">
@@ -93,7 +111,7 @@
 							<path d="M19 12H5" />
 						</svg>
 					</div>
-					<span class="xvwhg72ii">冠霖的聊天室</span>
+					<span class="xvwhg72ii"></span>
 				</div>
 			</div>
 			<div class="xikyLwDf4 xVjpzmyej"></div>
@@ -108,7 +126,7 @@
 							spellcheck="false"
 							tabindex="0"
 						></div>
-						<div class="xuwRtDpu4" tabindex="0">
+						<div class="xuwRtDpu4">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="24"
@@ -155,7 +173,7 @@
 						</svg>
 						<div>使用 Google 登入</div>
 					</div>
-					<div class="xYIKBnbHS xXyiikhrj" tabindex="0">
+					<div class="xYIKBnbHS xXyiikhrj disabled" tabindex="0">
 						<svg
 							class="xGBqJjpdr"
 							xmlns="http://www.w3.org/2000/svg"
@@ -175,6 +193,7 @@
 		<script type="module">
 			const googleSiginBtn = _(".xYIKBnbHS.xLO5aWUNC");
 			const sigInframe = _(".xUO0M1BpL .content");
+			const logoutBtn = _(".xPe6hJRD1");
 
 			const GoogleSigInSuccess = function (name, email, avatar) {
 				sigInframe.innerHTML = `<div class="xJ0pEZGEO">已成功登入Google帳號</div>
@@ -189,10 +208,13 @@
 						<div class="xQ6IT8O6S">${name}</div>
 						<div class="xPnpcvswL">${email}</div>
 					</div>
-				</div>
-				<div class="xaOvV3A91">
-					<div class="xFAubsy45" tabindex="0">完成</div>
 				</div>`;
+				_(".xUO0M1BpL").onclick = function() {
+					_(".xUO0M1BpL").classList.remove("show");
+					setTimeout(function() {
+						_(".xUO0M1BpL").remove()
+					}, 500)
+				}
 			};
 
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -216,9 +238,65 @@
 				onAuthStateChanged,
 				signOut,
 			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+			import {
+				getFirestore,
+				collection,
+				addDoc,
+				doc,
+				getDocs,
+				getDoc,
+			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
 
-			initializeApp(firebaseConfig);
+			const app = initializeApp(firebaseConfig);
+			const db = getFirestore(app);
 
+			//全局定義，保證在type="module"外也可調用
+			window.sendMessage = async function (roomId, messageContent) {
+				try {
+					const docRef = await addDoc(
+						collection(db, "chats", roomId, "messages"),
+						{
+							senderUID: window.userID,
+							sender: window.UserName,
+							content: messageContent,
+							timestamp: Date.now(),
+						}
+					);
+					console.log("Message stored with ID: ", docRef.id);
+				} catch (e) {
+					console.error("Error adding message: ", e);
+				}
+			};
+			window.loadChatHistory = async function (room) {
+				var data = await getDocs(collection(db, "chats", room, "messages"));
+
+				data.forEach((doc) => {
+					console.log(data);
+					var f = doc.data();
+					console.log(f.senderUID, window.UserID);
+					if (f.senderUID === window.UserID) {
+						_A17(f.content); // 本人
+					} else {
+						// 別人
+						_A25(f.content, "0", f.sender);
+					}
+				});
+			};
+
+			async function _A2653(a, b) {
+				var length = await getDocs(collection(db, "chats", b, "messages"));
+				createChatRoom(a, b, length.size, "現在");
+			}
+
+			window.onload = async function () {
+				const querySnapshot = await getDocs(collection(db, "chats"));
+				console.log(querySnapshot);
+				_(".xemr1y6ie .spinner").remove();
+				querySnapshot.forEach((doc) => {
+					var item = doc.data();
+					_A2653(item.name, item.id);
+				});
+			};
 			const provider = new GoogleAuthProvider();
 			const auth = getAuth();
 
@@ -228,6 +306,8 @@
 						const credential = GoogleAuthProvider.credentialFromResult(result);
 						const token = credential.accessToken;
 						const user = result.user;
+						window.UserID = user.uid;
+						window.UserName = user.displayName;
 						GoogleSigInSuccess(user.displayName, user.email, user.photoURL);
 					})
 					.catch((error) => {
@@ -241,13 +321,17 @@
 
 			onAuthStateChanged(auth, (user) => {
 				if (user) {
+					window.UserID = user.uid;
+					window.UserName = user.displayName;
 					// User is signed in, see docs for a list of available properties
 					// https://firebase.google.com/docs/reference/js/firebase.User
+					_A2();
 					console.log("User is signed in: ", user);
 					// Update UI to reflect user is signed in
 				} else {
 					document.querySelector(".xUO0M1BpL").classList.add("show");
 					// User is signed out
+					window.UserID = "";
 					console.log("User is signed out");
 					// Update UI to reflect user is signed out
 				}
@@ -262,6 +346,10 @@
 						console.error("Sign out error", error);
 					});
 			};
+
+			logoutBtn.onclick = function() {
+				window.logout()
+			}
 
 			googleSiginBtn.onclick = function () {
 				sigInframe.innerHTML = `<div class="spinner">
