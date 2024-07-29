@@ -1,3 +1,4 @@
+<!--2024/7/29 20:53 (UTC+8) latest update-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,10 +15,9 @@
 			rel="stylesheet"
 		/>
 		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="resources/github-dark-dimmed.css" />
 		<title>Structure</title>
 	</head>
 	<body class="app" theme="dark">
@@ -69,26 +69,8 @@
 						>
 							<path d="M21 12a9 9 0 1 1-6.219-8.56" />
 						</svg>
-						<span class="xkT2bkntT">載入中...</span>
+						<span class="xkT2bkntT">Loading...</span>
 					</div>
-				</div>
-				<div class="xPe6hJRD1">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-						<polyline points="16 17 21 12 16 7" />
-						<line x1="21" x2="9" y1="12" y2="12" />
-					</svg>
-					<div>登出</div>
 				</div>
 			</div>
 		</div>
@@ -147,6 +129,41 @@
 				</div>
 			</div>
 		</div>
+		<div class="navbar">
+			<div class="option active">
+				<svg
+					class="xRUc87exX"
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+				</svg>
+				<span class="xOCyxGfii">Chat</span>
+			</div>
+			<div class="option">
+				<svg
+					class="xRUc87exX"
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<circle cx="12" cy="8" r="5" />
+					<path d="M20 21a8 8 0 0 0-16 0" />
+				</svg>
+				<span class="xOCyxGfii">Account</span>
+			</div>
+		</div>
 		<div class="xUO0M1BpL">
 			<div class="overlay"></div>
 			<div class="content">
@@ -193,7 +210,6 @@
 		<script type="module">
 			const googleSiginBtn = _(".xYIKBnbHS.xLO5aWUNC");
 			const sigInframe = _(".xUO0M1BpL .content");
-			const logoutBtn = _(".xPe6hJRD1");
 
 			const GoogleSigInSuccess = function (name, email, avatar) {
 				sigInframe.innerHTML = `<div class="xJ0pEZGEO">已成功登入Google帳號</div>
@@ -209,12 +225,12 @@
 						<div class="xPnpcvswL">${email}</div>
 					</div>
 				</div>`;
-				_(".xUO0M1BpL").onclick = function() {
+				_(".xUO0M1BpL").onclick = function () {
 					_(".xUO0M1BpL").classList.remove("show");
-					setTimeout(function() {
-						_(".xUO0M1BpL").remove()
-					}, 500)
-				}
+					setTimeout(function () {
+						_(".xUO0M1BpL").remove();
+					}, 500);
+				};
 			};
 
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -242,40 +258,44 @@
 				getFirestore,
 				collection,
 				addDoc,
+				setDoc,
 				doc,
 				getDocs,
-				getDoc,
+				onSnapshot,
 			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
 
+			//初始化應用程序
 			const app = initializeApp(firebaseConfig);
 			const db = getFirestore(app);
 
-			//全局定義，保證在type="module"外也可調用
+			//全局定義
 			window.sendMessage = async function (roomId, messageContent) {
 				try {
-					const docRef = await addDoc(
+					const timestamp = Date.now().toString();
+					const docRef = doc(
 						collection(db, "chats", roomId, "messages"),
-						{
-							senderUID: window.userID,
-							sender: window.UserName,
-							content: messageContent,
-							timestamp: Date.now(),
-						}
+						timestamp
 					);
-					console.log("Message stored with ID: ", docRef.id);
+					await setDoc(docRef, {
+						senderUID: window.UserID,
+						sender: window.UserName,
+						content: messageContent,
+						timestamp: Date.now(),
+					});
 				} catch (e) {
 					console.error("Error adding message: ", e);
 				}
 			};
+
+			// 載入之前的聊天紀錄
 			window.loadChatHistory = async function (room) {
 				var data = await getDocs(collection(db, "chats", room, "messages"));
-
 				data.forEach((doc) => {
 					console.log(data);
 					var f = doc.data();
 					console.log(f.senderUID, window.UserID);
 					if (f.senderUID === window.UserID) {
-						_A17(f.content); // 本人
+						_A17(f.content, false); // 本人
 					} else {
 						// 別人
 						_A25(f.content, "0", f.sender);
@@ -288,6 +308,32 @@
 				createChatRoom(a, b, length.size, "現在");
 			}
 
+			window.createListener = function (room) {
+				// 之後可以取消訂閱，每次點選才監聽!
+				window.unsubscribe = onSnapshot(
+					collection(db, "chats", room, "messages"),
+					(snapshot) => {
+						if (!snapshot.metadata.hasPendingWrites) {
+							return;
+						}
+						snapshot.docChanges().forEach((change) => {
+							const message = change.doc.data();
+							if (change.type === "added") {
+								if (message.senderUID === window.UserID) {
+									// 本人 (不用做任何事)
+								} else {
+									// 別人
+									_A25(message.content, "0", message.sender);
+								}
+							}
+						});
+					},
+					(error) => {
+						console.error("監聽錯誤:", error);
+					}
+				);
+			};
+
 			window.onload = async function () {
 				const querySnapshot = await getDocs(collection(db, "chats"));
 				console.log(querySnapshot);
@@ -297,6 +343,7 @@
 					_A2653(item.name, item.id);
 				});
 			};
+			//google登入功能
 			const provider = new GoogleAuthProvider();
 			const auth = getAuth();
 
@@ -329,7 +376,7 @@
 					console.log("User is signed in: ", user);
 					// Update UI to reflect user is signed in
 				} else {
-					document.querySelector(".xUO0M1BpL").classList.add("show");
+					_(".xUO0M1BpL").classList.add("show");
 					// User is signed out
 					window.UserID = "";
 					console.log("User is signed out");
@@ -346,11 +393,6 @@
 						console.error("Sign out error", error);
 					});
 			};
-
-			logoutBtn.onclick = function() {
-				window.logout()
-			}
-
 			googleSiginBtn.onclick = function () {
 				sigInframe.innerHTML = `<div class="spinner">
 					<svg
