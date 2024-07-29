@@ -129,41 +129,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="navbar">
-			<div class="option active">
-				<svg
-					class="xRUc87exX"
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-				</svg>
-				<span class="xOCyxGfii">Chat</span>
-			</div>
-			<div class="option">
-				<svg
-					class="xRUc87exX"
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<circle cx="12" cy="8" r="5" />
-					<path d="M20 21a8 8 0 0 0-16 0" />
-				</svg>
-				<span class="xOCyxGfii">Account</span>
-			</div>
-		</div>
 		<div class="xUO0M1BpL">
 			<div class="overlay"></div>
 			<div class="content">
@@ -262,6 +227,10 @@
 				doc,
 				getDocs,
 				onSnapshot,
+				query,
+				orderBy,
+				limit,
+				startAfter,
 			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
 
 			//初始化應用程序
@@ -288,19 +257,22 @@
 			};
 
 			// 載入之前的聊天紀錄
+			// 每次載入20條
+			// 記得添加一個觸發載入功能
 			window.loadChatHistory = async function (room) {
-				var data = await getDocs(collection(db, "chats", room, "messages"));
-				data.forEach((doc) => {
-					console.log(data);
-					var f = doc.data();
-					console.log(f.senderUID, window.UserID);
+				const querySnapshot = await getDocs(
+					collection(db, "chats", room, "messages")
+				);
+				querySnapshot.forEach((item) => {
+					var f = item.data();
 					if (f.senderUID === window.UserID) {
-						_A17(f.content, false); // 本人
+						_A22(f.content, "0"); // 本人
 					} else {
 						// 別人
 						_A25(f.content, "0", f.sender);
 					}
 				});
+				lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
 			};
 
 			async function _A2653(a, b) {
