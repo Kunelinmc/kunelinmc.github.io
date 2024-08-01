@@ -1,4 +1,4 @@
-<!--2024/7/30 20:10 (UTC+8) latest update-->
+<!--2024/7/31 23:39 (UTC+8) latest update-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -92,7 +92,9 @@
 					<span class="xvwhg72ii"></span>
 				</div>
 			</div>
-			<div class="xikyLwDf4 xVjpzmyej"></div>
+			<div class="xikyLwDf4 xVjpzmyej">
+				<!--Start-->
+			</div>
 			<div class="x9vGRGDgT">
 				<div class="xkFjA3rNT">
 					<div class="xu3LrfLBe">
@@ -102,7 +104,7 @@
 							contenteditable="false"
 							autocomplete="off"
 							spellcheck="false"
-							tabindex="0"
+							tabindex="-1"
 						></div>
 						<div class="xuwRtDpu4 disabled">
 							<svg
@@ -152,11 +154,7 @@
 						<div>使用 Google 登入</div>
 					</div>
 					<div class="xYIKBnbHS xXyiikhrj" tabindex="0">
-						<svg
-							class="xGBqJjpdr"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 21 21"
-						>
+						<svg class="xGBqJjpdr" viewBox="0 0 21 21">
 							<path fill="#f35325" d="M0 0h10v10H0z" />
 							<path fill="#81bc06" d="M11 0h10v10H11z" />
 							<path fill="#05a6f0" d="M0 11h10v10H0z" />
@@ -264,14 +262,12 @@
 					)
 				);
 
-				console.log(querySnapshot)
-
 				querySnapshot.forEach((item) => {
 					var f = item.data();
 					if (f.senderUID === window.UserID) {
 						_A22(f.content, "0");
 					} else {
-						_A25(f.content, "0", f.sender);
+						_A25(f.content, "0", f.sender, timeAgo(f.timestamp));
 					}
 				});
 			};
@@ -296,7 +292,7 @@
 									// 本人 (不用做任何事)
 								} else {
 									// 別人
-									_A25(message.content, "0", message.sender);
+									_A25(message.content, "0", message.sender, "現在");
 								}
 							}
 						});
