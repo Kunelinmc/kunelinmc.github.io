@@ -282,9 +282,7 @@
 				window.unsubscribe = onSnapshot(
 					collection(db, "chats", room, "messages"),
 					(snapshot) => {
-						if (!snapshot.metadata.hasPendingWrites) {
-							return;
-						}
+						console.log(snapshot)
 						snapshot.docChanges().forEach((change) => {
 							const message = change.doc.data();
 							if (change.type === "added") {
