@@ -1,4 +1,4 @@
-<!--2024/8/1 22:13 (UTC+8) latest update (restart)-->
+<!--2024/7/31 23:39 (UTC+8) latest update-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -284,20 +284,19 @@
 					(snapshot) => {
 						console.log(snapshot)
 						// 防止取用快取數據
-						if (snapshot.metadata.fromCache) {
-							return;
-						}
-						snapshot.docChanges().forEach((change) => {
-							const message = change.doc.data();
-							if (change.type === "added") {
-								if (message.senderUID === window.UserID) {
-									// 本人 (不用做任何事)
-								} else {
-									// 別人
-									_A25(message.content, "0", message.sender, "現在");
+						if (snapshot.metadata.fromCache) return
+							snapshot.docChanges().forEach((change) => {
+								const message = change.doc.data();
+								if (change.type === "added") {
+									console.log("已更新")
+									if (message.senderUID === window.UserID) {
+										// 本人 (不用做任何事)
+									} else {
+										// 別人
+										_A25(message.content, "0", message.sender, "現在");
+									}
 								}
-							}
-						});
+							}); 
 					},
 					(error) => {
 						console.error("監聽錯誤:", error);
