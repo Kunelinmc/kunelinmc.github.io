@@ -1,4 +1,4 @@
-<!--2024/7/31 23:39 (UTC+8) latest update-->
+<!--2024/8/1 22:13 (UTC+8) latest update-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -278,11 +278,15 @@
 			}
 
 			window.createListener = function (room) {
-				// 之後可以取消訂閱，每次點選才監聽!
+				// 之後可以取消監聽
 				window.unsubscribe = onSnapshot(
 					collection(db, "chats", room, "messages"),
 					(snapshot) => {
 						console.log(snapshot)
+						// 防止取用快取數據
+						if (snapshot.metadata.fromCache) {
+							return;
+						}
 						snapshot.docChanges().forEach((change) => {
 							const message = change.doc.data();
 							if (change.type === "added") {
