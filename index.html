@@ -1,4 +1,4 @@
-<!--2024/7/31 23:39 (UTC+8) latest update-->
+<!--2024/8/4 10:41 (UTC+8) latest update-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -45,7 +45,6 @@
 					type="text"
 					placeholder="Search..."
 					disabled
-					maxlength="25"
 					tabindex="-1"
 				/>
 			</div>
@@ -97,32 +96,29 @@
 			</div>
 			<div class="x9vGRGDgT">
 				<div class="xkFjA3rNT">
-					<div class="xu3LrfLBe">
-						<div
-							class="xtsARDHTI"
-							placeholder="Message..."
-							contenteditable="false"
-							autocomplete="off"
-							spellcheck="false"
-							tabindex="-1"
-						></div>
-						<div class="xuwRtDpu4 disabled">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="x1EV2qZZE"
-							>
-								<path d="m3 3 3 9-3 9 19-9Z" />
-								<path d="M6 12h16" />
-							</svg>
-						</div>
+					<div
+						class="xtsARDHTI"
+						placeholder="Enter message..."
+						contenteditable="false"
+						autocomplete="off"
+						spellcheck="false"
+						tabindex="-1"
+					></div>
+					<div class="xuwRtDpu4 disabled">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="x1EV2qZZE"
+						>
+							<path d="m3 3 3 9-3 9 19-9Z" />
+							<path d="M6 12h16" />
+						</svg>
 					</div>
 				</div>
 			</div>
@@ -278,25 +274,23 @@
 			}
 
 			window.createListener = function (room) {
-				// 之後可以取消監聽
-				window.unsubscribe = onSnapshot(
+				onSnapshot(
 					collection(db, "chats", room, "messages"),
 					(snapshot) => {
-						console.log(snapshot)
-						// 防止取用快取數據
-						if (snapshot.metadata.fromCache) return
-							snapshot.docChanges().forEach((change) => {
-								const message = change.doc.data();
-								if (change.type === "added") {
-									console.log("已更新")
-									if (message.senderUID === window.UserID) {
-										// 本人 (不用做任何事)
-									} else {
-										// 別人
+						if (snapshot.metadata.fromCache) return;
+						snapshot.docChanges().forEach((change) => {
+							const message = change.doc.data();
+							if (change.type === "added") {
+								if (window.currentRoom === room) {
+									console.log("當前聊天室有新消息");
+									if (message.senderUID !== window.UserID) {
 										_A25(message.content, "0", message.sender, "現在");
 									}
+								} else {
+									console.log("其他聊天室有新消息");
 								}
-							}); 
+							}
+						});
 					},
 					(error) => {
 						console.error("監聽錯誤:", error);
