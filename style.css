@@ -1,4 +1,4 @@
-/**202408050911v2*/
+/**202408060859v2*/
 
 @font-face {
 	font-family: "Gen Jyuu Gothic";
@@ -760,7 +760,7 @@ pre {
 	transition: 0.1s;
 }
 
-.xYIKBnbHS:hover {
+.xYIKBnbHS:not(.disabled):hover {
 	background-color: #202022;
 	border: 1px solid #404144;
 }
