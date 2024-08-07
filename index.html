@@ -55,7 +55,6 @@
 					translate="no"
 					type="text"
 					placeholder="Search..."
-					enterkeyhint="Search"
 					disabled
 					maxlength="25"
 					tabindex="-1"
@@ -112,7 +111,6 @@
 					<div
 						class="xtsARDHTI"
 						placeholder="Enter message..."
-						enterkeyhint="Send"
 						contenteditable="false"
 						autocomplete="off"
 						spellcheck="false"
@@ -234,7 +232,7 @@
 				query,
 				orderBy,
 				limit,
-				getDoc
+				getDoc,
 			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
 
 			//初始化應用程序
@@ -242,9 +240,15 @@
 			const db = getFirestore(app);
 
 			//全局定義
-			window.sendMessage = async function (roomId, messageContent) {
+			window.sendMessage = async function (roomId, messageContent, box) {
 				try {
 					const docRef = doc(collection(db, "chats", roomId, "messages"));
+					// 傳遞元素作為參數加上
+					try {
+						box.setAttribute("data-mid", docRef.id);
+					} catch (error) {
+						console.log("無法設置該元素參數：", error);
+					}
 					await setDoc(docRef, {
 						senderUID: window.UserID,
 						sender: window.UserName,
@@ -271,9 +275,9 @@
 				querySnapshot.forEach((item) => {
 					var f = item.data();
 					if (f.senderUID === window.UserID) {
-						_A22(f.content, "0");
+						_A22(f.content, item.id);
 					} else {
-						_A25(f.content, "0", f.sender, timeAgo(f.timestamp))
+						_A25(f.content, item.id, f.sender, timeAgo(f.timestamp));
 					}
 				});
 			};
@@ -294,10 +298,22 @@
 								if (window.currentRoom === room) {
 									console.log("當前聊天室有新消息");
 									if (message.senderUID !== window.UserID) {
-										_A25(message.content, "0", message.sender, "現在");
+										_A25(message.content, change.doc.id, message.sender, "Now");
 									}
 								} else {
-									console.log("其他聊天室有新消息");
+								}
+							} else if (change.type === "removed") {
+								try {
+									var del = document.querySelector(
+										`.xikyLwDf4 .xVC8gtuyS.xiOw4dg0O[data-mid="${change.doc.id}"]`
+									)
+									del.classList.add("deleted");
+									del.innerHTML = "這則訊息已被刪除";
+									setTimeout(function() {
+										del.remove()
+									}, 3000)
+								} catch (error) {
+									console.log("發生未知錯誤", error);
 								}
 							}
 						});
