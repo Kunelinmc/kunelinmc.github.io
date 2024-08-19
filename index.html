@@ -7,16 +7,6 @@
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
 		<link rel="stylesheet" href="style.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-			rel="stylesheet"
-		/>
 		<title>Structure</title>
 	</head>
 	<body class="app" theme="dark">
@@ -58,7 +48,7 @@
 					class="xujXllYgW"
 					translate="no"
 					type="text"
-					placeholder="Search..."
+					placeholder="搜尋..."
 					disabled
 					maxlength="25"
 					tabindex="-1"
@@ -81,26 +71,6 @@
 							<path d="M21 12a9 9 0 1 1-6.219-8.56" />
 						</svg>
 						<span class="xkT2bkntT">Loading...</span>
-					</div>
-				</div>
-				<div class="xfHJLnn1z">
-					<div class="xJswlQP95" id="logoutBTN">
-						<svg
-							class="xA2Ba7Hhp"
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-							<polyline points="16 17 21 12 16 7" />
-							<line x1="21" x2="9" y1="12" y2="12" />
-						</svg>
-						<span class="xGzNwAf4A">登出</span>
 					</div>
 				</div>
 			</div>
@@ -134,7 +104,7 @@
 				<div class="xkFjA3rNT">
 					<div
 						class="xtsARDHTI"
-						placeholder="Enter message..."
+						placeholder="在這裡輸入訊息..."
 						contenteditable="false"
 						autocomplete="off"
 						spellcheck="false"
@@ -164,7 +134,7 @@
 			<div class="content">
 				<div class="xrYn5ZY3v">帳號登入</div>
 				<div class="xRRuA0Z3S">
-					<div class="xYIKBnbHS xLO5aWUNC" tabindex="0">
+					<div class="xYIKBnbHS xLO5aWUNC" tabindex="0" id="x7BYgkdiJ">
 						<svg class="xGBqJjpdr" viewBox="0 0 20 20">
 							<path
 								d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z"
@@ -185,48 +155,214 @@
 						</svg>
 						<div>使用 Google 登入</div>
 					</div>
-					<div class="xYIKBnbHS xXyiikhrj disabled" tabindex="0">
-						<svg class="xGBqJjpdr" viewBox="0 0 21 21">
-							<path fill="#f35325" d="M0 0h10v10H0z" />
-							<path fill="#81bc06" d="M11 0h10v10H11z" />
-							<path fill="#05a6f0" d="M0 11h10v10H0z" />
-							<path fill="#ffba08" d="M11 11h10v10H11z" />
+					<div class="xYIKBnbHS" tabindex="0" id="xBnuWNG6V">
+						<svg class="xGBqJjpdr" viewBox="0 0 20 20">
+							<path
+								d="M1 5.006A2 2 0 012.995 3h14.01A2 2 0 0119 5.006v9.988A2 2 0 0117.005 17H2.995A2 2 0 011 14.994V5.006zM3 5l7 4 7-4v2l-7 4-7-4V5z"
+								fill-rule="evenodd"
+								fill="#788aa2"
+							></path>
 						</svg>
-						<div>使用 Microsoft 登入</div>
+						<div>使用 電子郵件 登入</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="script.js"></script>
 		<script type="module">
-			let googleSiginBtn=_(".xYIKBnbHS.xLO5aWUNC"),sigInframe=_(".xUO0M1BpL .content"),GoogleSigInSuccess=function(e,s,a){sigInframe.innerHTML=`<div class="xJ0pEZGEO">已成功登入Google帳號</div>
-					<div class="xDmLoXo3E">
-						<img
-							class="xm7NzrczQ"
-							draggable="false"
-							src="${a}"
-							alt="avatar"
-						/>
-						<div class="xDLBHn55v">
-							<div class="xQ6IT8O6S">${e}</div>
-							<div class="xPnpcvswL">${s}</div>
-						</div>
-					</div>`,_(".xUO0M1BpL").onclick=function(){_(".xUO0M1BpL").classList.remove("show"),setTimeout(function(){_(".xUO0M1BpL").remove()},500)}};import{initializeApp as e}from"https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";let firebaseConfig={apiKey:"AIzaSyAp73V5ZsBUtpy4kS3-QyGirGSpz71DPWo",authDomain:"smiling-theory-397204.firebaseapp.com",databaseURL:"https://smiling-theory-397204-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"smiling-theory-397204",storageBucket:"smiling-theory-397204.appspot.com",messagingSenderId:"360479398694",appId:"1:360479398694:web:05b7df5ce277f89ea8ffe7",measurementId:"G-6BKTT1K7D1"};import{getAuth as s,signInWithPopup as a,GoogleAuthProvider as t,onAuthStateChanged as i,signOut as o}from"https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";import{getFirestore as n,collection as r,addDoc as c,setDoc as d,doc as g,getDocs as l,onSnapshot as m,query as p,orderBy as h,limit as u,getDoc as f}from"https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";let app=e(firebaseConfig),db=n(app);async function _A2653(e,s){var a=await l(r(db,"chats",s,"messages"));createChatRoom(e,s,a.size,"現在")}window.sendMessage=async function(e,s,a){try{let t=g(r(db,"chats",e,"messages"));try{a.setAttribute("data-mid",t.id)}catch(i){console.log("無法設置該元素參數：",i)}await d(t,{senderUID:window.UserID,sender:window.UserName,content:s,timestamp:Date.now()})}catch(o){console.error("Error adding message: ",o)}},window.loadChatHistory=async function(e){(await l(p(r(db,"chats",e,"messages"),h("timestamp","asc"),u(20)))).forEach(e=>{var s=e.data();s.senderUID===window.UserID?_A22(s.content,e.id):_A25(s.content,e.id,s.sender,timeAgo(s.timestamp))})},window.createListener=function(e){m(r(db,"chats",e,"messages"),s=>{s.metadata.fromCache||s.docChanges().forEach(s=>{let a=s.doc.data();if("added"===s.type)window.currentRoom===e&&(console.log("當前聊天室有新消息"),a.senderUID!==window.UserID&&_A25(a.content,s.doc.id,a.sender,"現在"));else if("removed"===s.type)try{var t=document.querySelector(`.xikyLwDf4 .xVC8gtuyS[data-mid="${s.doc.id}"]`);t.classList.add("deleted"),t.innerHTML="這則訊息已被刪除",setTimeout(function(){t.remove()},3e3)}catch(i){console.log("發生未知錯誤",i)}})},e=>{console.error("監聽錯誤:",e)})},window.onload=async function(){let e=await l(r(db,"chats"));_(".xemr1y6ie .spinner").remove(),e.forEach(e=>{var s=e.data();_A2653(s.name,s.id)})};let provider=new t,auth=s(),SignInWidthGoogle=function(){a(auth,provider).then(e=>{t.credentialFromResult(e).accessToken;let s=e.user;window.UserID=s.uid,window.UserName=s.displayName,GoogleSigInSuccess(s.displayName,s.email,s.photoURL)}).catch(e=>{e.code;let s=e.message;e.customData.email,t.credentialFromError(e),console.log(s)})};i(auth,e=>{e?(window.UserID=e.uid,window.UserName=e.displayName,_A2(),console.log("User is signed in: ",e)):(_(".xUO0M1BpL").classList.add("show"),window.UserID="",console.log("User is signed out"))}),window.logout=()=>{o(auth).then(()=>{console.log("User signed out")}).catch(e=>{console.error("Sign out error",e)})},_("#logoutBTN").onclick=function(){window.logout()},googleSiginBtn.onclick=function(){sigInframe.innerHTML=`<div class="spinner">
-						<svg
-							class="xxA4Cqchz"
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke-width="2	"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M21 12a9 9 0 1 1-6.219-8.56" />
-						</svg>
-						<span class="xkT2bkntT">等待中...</span>
-					</div>`,SignInWidthGoogle()},googleSiginBtn.onkeydown=function(e){13===e.keyCode&&window.SignInWidthGoogle()};
+			let googleSiginBtn = _(".xYIKBnbHS#x7BYgkdiJ"),
+				sigInframe = _(".xUO0M1BpL .content"),
+				GoogleSigInSuccess = function (e, s, t) {
+					(sigInframe.innerHTML = `<div class="xJ0pEZGEO">已成功登入Google帳號</div><div class="xDmLoXo3E"><img class="xm7NzrczQ" draggable="false" src="${t}" alt="avatar"/><div class="xDLBHn55v"><div class="xQ6IT8O6S">${e}</div><div class="xPnpcvswL">${s}</div></div></div>`),
+						(_(".xUO0M1BpL").onclick = function () {
+							_(".xUO0M1BpL").classList.remove("show"),
+								setTimeout(function () {
+									_(".xUO0M1BpL").remove();
+								}, 500);
+						});
+				};
+			import { initializeApp as e } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+			let firebaseConfig = {
+				apiKey: "AIzaSyAp73V5ZsBUtpy4kS3-QyGirGSpz71DPWo",
+				authDomain: "smiling-theory-397204.firebaseapp.com",
+				databaseURL:
+					"https://smiling-theory-397204-default-rtdb.asia-southeast1.firebasedatabase.app",
+				projectId: "smiling-theory-397204",
+				storageBucket: "smiling-theory-397204.appspot.com",
+				messagingSenderId: "360479398694",
+				appId: "1:360479398694:web:05b7df5ce277f89ea8ffe7",
+				measurementId: "G-6BKTT1K7D1",
+			};
+			import {
+				getAuth as s,
+				signInWithPopup as t,
+				GoogleAuthProvider as a,
+				onAuthStateChanged as i,
+				signOut as o,
+			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+			import {
+				getFirestore as r,
+				collection as n,
+				addDoc as c,
+				setDoc as d,
+				doc as l,
+				getDocs as g,
+				startAfter as m,
+				onSnapshot as p,
+				query as h,
+				orderBy as f,
+				limit as u,
+				getDoc as v,
+			} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+			let app = e(firebaseConfig),
+				db = r(app);
+			async function _A2653(e, s) {
+				var t = await g(n(db, "chats", s, "messages"));
+				createChatRoom(e, s, t.size, "現在");
+			}
+			(window.sendMessage = async function (e, s, t) {
+				try {
+					let a = l(n(db, "chats", e, "messages"));
+					try {
+						t.setAttribute("data-mid", a.id);
+					} catch (i) {
+						console.log("無法設置該元素參數：", i);
+					}
+					await d(a, {
+						senderUID: window.UserID,
+						sender: window.UserName,
+						content: s,
+						timestamp: Date.now(),
+					});
+				} catch (o) {
+					console.error("Error adding message: ", o);
+				}
+			}),
+				(currentPage = 0),
+				(window.loadMoreChatHistory = async function (e) {
+					try {
+						let s = await g(
+							h(
+								n(db, "chats", e, "messages"),
+								f("timestamp", "desc"),
+								m(window.lastDoc),
+								u(10)
+							)
+						);
+						s.docs[9] && (window.lastDoc = s.docs[9]),
+							s.forEach((e) => {
+								var s = e.data();
+								s.senderUID === window.UserID
+									? _A22(s.content, e.id, !1)
+									: _A25(s.content, s.id, s.sender, timeAgo(s.timestamp), !1);
+							});
+					} catch (t) {}
+				}),
+				(window.loadChatHistory = async function (e) {
+					let s = await g(
+						h(n(db, "chats", e, "messages"), f("timestamp", "desc"), u(10))
+					);
+					s.docs[9] && (window.lastDoc = s.docs[9]);
+					let t = [];
+					s.forEach((e) => {
+						t.push(e);
+					}),
+						t.reverse(),
+						t.forEach((e) => {
+							var s = e.data();
+							s.senderUID === window.UserID
+								? _A22(s.content, e.id)
+								: _A25(s.content, e.id, s.sender, timeAgo(s.timestamp));
+						});
+				}),
+				(window.createListener = function (e) {
+					p(
+						n(db, "chats", e, "messages"),
+						(s) => {
+							s.metadata.fromCache ||
+								s.docChanges().forEach((s) => {
+									let t = s.doc.data();
+									if ("added" === s.type)
+										window.currentRoom === e &&
+											(console.log("當前聊天室有新消息"),
+											t.senderUID !== window.UserID &&
+												("hidden" === document.visibilityState &&
+													(window.totalNoSee++,
+													(document.title = `(${totalNoSee}) Structure`)),
+												_A25(t.content, s.doc.id, t.sender, "現在")));
+									else if ("removed" === s.type && window.currentRoom === e) {
+										console.log(e);
+										try {
+											var a = document.querySelector(
+												`.xikyLwDf4 .xVC8gtuyS[data-mid="${s.doc.id}"]`
+											);
+											a.classList.add("deleted"),
+												(a.innerHTML = "這則訊息已被刪除"),
+												setTimeout(function () {
+													a.remove();
+												}, 3e3);
+										} catch (i) {
+											console.log("發生未知錯誤", i);
+										}
+									}
+								});
+						},
+						(e) => {
+							console.error("監聽錯誤:", e);
+						}
+					);
+				}),
+				(window.onload = async function () {
+					let e = await g(n(db, "chats"));
+					_(".xemr1y6ie .spinner").remove(),
+						e.forEach((e) => {
+							var s = e.data();
+							-1 !== s.members.indexOf(window.UserID) && _A2653(s.name, e.id);
+						});
+				});
+			let provider = new a(),
+				auth = s(),
+				SignInWidthGoogle = function () {
+					t(auth, provider)
+						.then((e) => {
+							a.credentialFromResult(e).accessToken;
+							let s = e.user;
+							(window.UserID = s.uid),
+								(window.UserName = s.displayName),
+								GoogleSigInSuccess(s.displayName, s.email, s.photoURL);
+						})
+						.catch((e) => {
+							e.code;
+							let s = e.message;
+							e.customData.email, a.credentialFromError(e), console.log(s);
+						});
+				};
+			i(auth, (e) => {
+				e
+					? ((window.UserID = e.uid),
+					  (window.UserName = e.displayName),
+					  _A2(),
+					  console.log("User is signed in: ", e))
+					: (_(".xUO0M1BpL").classList.add("show"),
+					  (window.UserID = ""),
+					  console.log("User is signed out"));
+			}),
+				(window.logout = () => {
+					o(auth)
+						.then(() => {
+							console.log("User signed out");
+						})
+						.catch((e) => {
+							console.error("Sign out error", e);
+						});
+				}),
+				(googleSiginBtn.onclick = function () {
+					(sigInframe.innerHTML = `<div class="spinner"><svg class="xxA4Cqchz" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg><span class="xkT2bkntT">等待中...</span></div>`),
+						SignInWidthGoogle();
+				}),
+				(googleSiginBtn.onkeydown = function (e) {
+					13 === e.keyCode && window.SignInWidthGoogle();
+				});
 		</script>
 	</body>
 </html>
