@@ -1,0 +1,14 @@
+{
+	"name": "Structure",
+	"short_name": "Structure",
+	"description": "隱私、方便的聊天應用程序",
+	"start_url": "/index.html",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "/assets/icon.png",
+			"sizes": "256x256",
+			"type": "image/png"
+		}
+	]
+}
