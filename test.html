@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>body {
+	font-family: sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin: 80px 10px;
+  }
+  
+  video {
+	width: 40vw;
+	height: 30vw;
+	margin: 2rem;
+	background: rgb(44, 62, 80);
+  }
+  
+  .videos {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }</style>
+    <title>WebRTC</title>
+  </head>
+  <body>
+    <h2>1.啟動您的網路攝影機</h2>
+    <div class="videos">
+      <span>
+        <h3>本地流</h3>
+        <video id="webcamVideo" autoplay playsinline></video>
+      </span>
+      <span>
+        <h3>遠端串流</h3>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </span>
+
+
+    </div>
+
+    <button id="webcamButton">啟動網路攝影機</button>
+    <h2>2. 建立一個新的通話</h2>
+    <button id="callButton" disabled>建立通話</button>
+
+    <h2>3. 加入通話</h2>
+    <p>從不同的瀏覽器視窗或裝置接聽電話</p>
+    
+    <input id="callInput" />
+    <button id="answerButton" disabled>加入</button>
+
+    <h2>4. 掛斷</h2>
+
+    <button id="hangupButton" disabled>掛斷</button>
+
+    <!-- script for webrtc -->
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+import {
+	getFirestore,
+	collection,
+	doc,
+	setDoc,
+	addDoc,
+	getDoc,
+	updateDoc,
+	onSnapshot,
+} from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+
+const firebaseConfig = {
+	apiKey: "AIzaSyDg7w0_4P6WDA8Puat54HzcKZIhC9l0Iog",
+	authDomain: "chat-messages-8baaa.firebaseapp.com",
+	databaseURL:
+		"https://chat-messages-8baaa-default-rtdb.asia-southeast1.firebasedatabase.app",
+	projectId: "chat-messages-8baaa",
+	storageBucket: "chat-messages-8baaa.appspot.com",
+	messagingSenderId: "347821742653",
+	appId: "1:347821742653:web:609207d6ff2b8afc0b6854",
+	measurementId: "G-9T3J50GMZB",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+
+const servers = {
+    iceServers: [
+        {
+            urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+        },
+    ],
+    iceCandidatePoolSize: 10,
+};
+
+// 全局狀態
+const pc = new RTCPeerConnection(servers);
+let localStream = null;
+let remoteStream = null;
+
+// DOM 元素引用
+const webcamButton = document.querySelector("#webcamButton");
+const webcamVideo = document.querySelector("#webcamVideo");
+const callButton = document.querySelector("#callButton");
+const callInput = document.querySelector("#callInput");
+const answerButton = document.querySelector("#answerButton");
+const remoteVideo = document.querySelector("#remoteVideo");
+const hangupButton = document.querySelector("#hangupButton");
+
+webcamButton.onclick = async () => {
+    try {
+        localStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+        });
+        remoteStream = new MediaStream();
+        localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
+        pc.ontrack = (event) => {
+            event.streams[0].getTracks().forEach((track) => remoteStream.addTrack(track));
+        };
+        webcamVideo.srcObject = localStream;
+        remoteVideo.srcObject = remoteStream;
+        callButton.disabled = false;
+        answerButton.disabled = false;
+        webcamButton.disabled = true;
+    } catch (error) {
+        console.error("Error accessing media devices.", error);
+    }
+};
+
+callButton.onclick = async () => {
+    // 參考 Firestore 集合
+    const callDocRef = doc(collection(firestore, "calls"));
+    const offerCandidatesRef = collection(callDocRef, "offerCandidates");
+    const answerCandidatesRef = collection(callDocRef, "answerCandidates");
+
+    // 設置輸入框的值為 callDoc 的 ID
+    callInput.value = callDocRef.id;
+
+    // 為呼叫者獲取候選者並保存到數據庫
+    pc.onicecandidate = async (event) => {
+        if (event.candidate) {
+            await addDoc(offerCandidatesRef, event.candidate.toJSON());
+        }
+    };
+
+    // 創建 offer
+    const offerDescription = await pc.createOffer();
+    await pc.setLocalDescription(offerDescription);
+
+    // 配置 offer
+    const offer = {
+        sdp: offerDescription.sdp,
+        type: offerDescription.type,
+    };
+
+    await setDoc(callDocRef, { offer });
+
+    // 監聽 Firestore 的變化並更新流
+    onSnapshot(callDocRef, (snapshot) => {
+        const data = snapshot.data();
+
+        if (!pc.currentRemoteDescription && data?.answer) {
+            const answerDescription = new RTCSessionDescription(data.answer);
+            pc.setRemoteDescription(answerDescription);
+        }
+
+        // 如果已回答，則將候選者添加到 Peer Connection
+        onSnapshot(answerCandidatesRef, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                if (change.type === "added") {
+                    const candidate = new RTCIceCandidate(change.doc.data());
+                    pc.addIceCandidate(candidate);
+                }
+            });
+        });
+    });
+
+    hangupButton.disabled = false;
+};
+
+answerButton.onclick = async () => {
+    const callId = callInput.value;
+
+    // 獲取此通話的數據
+    const callDocRef = doc(firestore, "calls", callId);
+    const answerCandidatesRef = collection(callDocRef, "answerCandidates");
+    const offerCandidatesRef = collection(callDocRef, "offerCandidates");
+
+    // 監聽變化並將其添加到 answerCandidates
+    pc.onicecandidate = async (event) => {
+        if (event.candidate) {
+            await addDoc(answerCandidatesRef, event.candidate.toJSON());
+        }
+    };
+
+    const callData = (await getDoc(callDocRef)).data();
+
+    // 設置遠程視頻為 offerDescription
+    const offerDescription = callData.offer;
+    await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+
+    // 將本地視頻設置為 answer
+    const answerDescription = await pc.createAnswer();
+    await pc.setLocalDescription(answerDescription);
+
+    // answer 配置
+    const answer = {
+        type: answerDescription.type,
+        sdp: answerDescription.sdp,
+    };
+
+    await updateDoc(callDocRef, { answer });
+
+    // 監聽 offerCandidates 的變化
+    onSnapshot(offerCandidatesRef, (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+                const candidate = new RTCIceCandidate(change.doc.data());
+                pc.addIceCandidate(candidate);
+            }
+        });
+    });
+};
+</script>
+
+  </body>
+</html>
