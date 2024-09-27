@@ -1,11 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="utf-8" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
 		/>
+		<base target="_blank" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="shortcut icon" href="assets/icon.png" />
 		<link rel="manifest" href="manifest.json" />
@@ -13,6 +14,9 @@
 			name="description"
 			content="追求隱私與方便性？試試這個全新的聊天應用！"
 		/>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<title>Structure</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,6 +64,7 @@
 					class="xujXllYgW"
 					translate="no"
 					type="text"
+					autocomplete="off"
 					placeholder="搜尋..."
 					maxlength="25"
 					tabindex="-1"
