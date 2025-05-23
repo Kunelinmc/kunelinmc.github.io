@@ -1,4 +1,4 @@
-const CACHE_NAME = "xriVF9aVk",
+const CACHE_NAME = "x5m9G8OnR",
 	CACHE_FILES = [
 		"/",
 		"/index.html",
