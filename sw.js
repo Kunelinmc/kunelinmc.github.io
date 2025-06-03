@@ -1,5 +1,5 @@
-/**release 2.5.1*/
-const CACHE_NAME = "xRQuMdwqa",
+/**release 2.5.5*/
+const CACHE_NAME = "xv9vTzhBP",
 	CACHE_FILES = [
 		"/",
 		"/index.html",
