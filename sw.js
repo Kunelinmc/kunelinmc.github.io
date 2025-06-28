@@ -1,5 +1,5 @@
-/**release 0.0.1*/
-const CACHE_NAME = "SwPIgYMZ";
+/**release 0.1.5*/
+const CACHE_NAME = "xD9zfgcRC";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -11,7 +11,6 @@ const PRECACHE_URLS = [
 ];
 
 // --- 工具函数 ---
-
 async function openCache() {
 	return await caches.open(CACHE_NAME);
 }
@@ -39,7 +38,6 @@ async function clearAllCaches() {
 }
 
 // --- 安裝：預緩存靜態資源 ---
-
 self.addEventListener("install", (event) => {
 	self.skipWaiting();
 	event.waitUntil(
@@ -48,7 +46,6 @@ self.addEventListener("install", (event) => {
 });
 
 // --- 激活：清除舊版本緩存 ---
-
 self.addEventListener("activate", (event) => {
 	event.waitUntil(
 		caches
@@ -68,7 +65,6 @@ self.addEventListener("activate", (event) => {
 });
 
 // --- 抓取：自動緩存 & 返回緩存或網路 ---
-
 self.addEventListener("fetch", (event) => {
 	const { request } = event;
 
@@ -93,7 +89,6 @@ self.addEventListener("fetch", (event) => {
 });
 
 // --- 接收來自頁面的消息：添加或清除資源 ---
-
 self.addEventListener("message", (event) => {
 	const { action, url } = event.data || {};
 
