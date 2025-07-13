@@ -1,5 +1,5 @@
-/**release 0.2.4*/
-const CACHE_NAME = "IGGatDxo";
+/**release 0.1.0*/
+const CACHE_NAME = "MEggG3br";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
