@@ -8,6 +8,8 @@ const PRECACHE_URLS = [
 	"/manifest.json",
 	"/assets/icon.png",
 	"/assets/logo.png",
+	"/assets/avatar.png",
+	"/assets/default-banner.png"
 ];
 
 // --- 工具函数 ---
