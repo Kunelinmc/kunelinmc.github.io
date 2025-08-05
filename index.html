@@ -23,7 +23,7 @@
 		/>
 		<meta name="theme-color" content="#0b0809" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta id="apple-status-bar" name="apple-mobile-web-app-status-bar-style" content="default">
+		<meta id="apple-status-bar" name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="apple-touch-fullscreen" content="yes" />
 		<title>Structure</title>
 	</head>
@@ -313,18 +313,6 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			function updateStatusBar() {
-			  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			  document
-			    .getElementById('apple-status-bar')
-			    .setAttribute('content', isDark ? 'black' : 'default');
-			}
-			updateStatusBar();
-			
-			// 当系统主题变化时自动更新
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateStatusBar);
-		</script>
 		<script type="module" src="script.js" crossorigin="anonymous"></script>
 	</body>
 </html>
