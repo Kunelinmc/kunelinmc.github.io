@@ -1849,7 +1849,6 @@ body.mobile .xFz8bwNFr {
 	min-width: 100%;
 	border-right: none;
 	margin-top: env(safe-area-inset-top);
-	margin-bottom: env(safe-area-inset-bottom);
 }
 
 body.mobile .xFz8bwNFr:not(.xCr0RyqCg, .xgu6pGjzk) {
@@ -1865,7 +1864,6 @@ body.mobile .x8o58HttN {
 	top: 0;
 	left: 0;
 	margin-top: env(safe-area-inset-top);
-	margin-bottom: env(safe-area-inset-bottom);
 	background-color: var(--str-background);
 	width: 100vw;
 	bottom: 0;
@@ -3166,7 +3164,6 @@ body.mobile .xCr0RyqCg {
 	overflow: auto;
 	width: 100vw;
 	bottom: 0;
-	margin-bottom: env(safe-area-inset-bottom);
 	z-index: 47;
 	background-color: var(--str-background);
 	transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
