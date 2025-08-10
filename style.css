@@ -1165,7 +1165,6 @@ body:not(.mobile) .xrQdSHI2A:not(.disabled):hover {
 }
 
 body.mobile {
-	position: fixed !important;
 	overflow: hidden !important;
 }
 
