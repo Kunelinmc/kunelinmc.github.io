@@ -1165,7 +1165,6 @@ body:not(.mobile) .xrQdSHI2A:not(.disabled):hover {
 body.mobile {
 	position: fixed !important;
 	overflow: hidden !important;
-	inset: 0;
 }
 
 .x2fP9fkxS.hide {
@@ -1835,10 +1834,11 @@ body:has(.x8o58HttN.x8VAGH6N2).mobile .xFz8bwNFr:not(.xjv5U11Kz, .xgu6pGjzk) {
 	left: 16px !important;
 }
 body.mobile .xFz8bwNFr {
+	position: absolute;
+	top: 0;
 	flex-grow: 1;
 	width: 100%;
 	min-width: 100%;
-	height: 100dvh;
 	border-right: none;
 	margin-top: env(safe-area-inset-top);
 }
@@ -1859,7 +1859,6 @@ body.mobile .x8o58HttN {
 	background-color: var(--str-background);
 	width: 100vw;
 	bottom: 0;
-	height: 100dvh;
 	z-index: 25;
 }
 
