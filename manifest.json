@@ -9,7 +9,6 @@
 	},
 	"start_url": "./",
 	"scope": "../",
-	"theme_color": "#0b0809",
 	"icons": [
 		{
 			"src": "/assets/logo.png",
