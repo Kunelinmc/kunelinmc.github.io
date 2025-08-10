@@ -1169,7 +1169,8 @@ html, body {
 }
 
 body.mobile {
-	min-height: 100dvh;
+	position: fixed;
+	overflow: hidden !important;
 }
 
 .x2fP9fkxS.hide {
