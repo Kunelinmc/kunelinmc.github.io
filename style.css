@@ -1164,13 +1164,15 @@ body:not(.mobile) .xrQdSHI2A:not(.disabled):hover {
 	color: color-mix(in oklab, var(--color-zinc-300) 72%, transparent);
 }
 
-html, body {
+html,
+body {
 	overflow: hidden;
 }
 
 body.mobile {
 	position: fixed;
 	overflow: hidden !important;
+	z-index: 2;
 }
 
 .x2fP9fkxS.hide {
@@ -3164,7 +3166,6 @@ body.mobile .xCr0RyqCg {
 	overflow: auto;
 	width: 100vw;
 	bottom: 0;
-	margin-top: env(safe-area-inset-top);
 	margin-bottom: env(safe-area-inset-bottom);
 	z-index: 47;
 	background-color: var(--str-background);
@@ -3172,6 +3173,15 @@ body.mobile .xCr0RyqCg {
 	transform: translate3d(103%, 0, 0);
 	will-change: transform;
 	container-type: inline-size;
+}
+
+.xB4hVI3El:not(.xwMgtrL2x) {
+	margin-top: env(safe-area-inset-top);
+}
+
+.xwMgtrL2x .xopQXJrX5 {
+	margin-top: env(safe-area-inset-top);
+
 }
 
 .xB4hVI3El:not(.xjv5U11Kz).xa2pPtuLq {
