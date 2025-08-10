@@ -1,5 +1,5 @@
 /**release 0.2.6*/
-const CACHE_NAME = "xfmtujBYb";
+const CACHE_NAME = "xFkzHQ8IG";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -12,7 +12,6 @@ const PRECACHE_URLS = [
 	"/assets/default-banner.png"
 ];
 
-// --- 工具函数 ---
 async function openCache() {
 	return await caches.open(CACHE_NAME);
 }
@@ -24,22 +23,21 @@ async function addToCacheIfNotExists(url) {
 		const response = await fetch(url);
 		if (response.ok) {
 			await cache.put(url, response.clone());
-			console.log(`已緩存：${url}`);
+			console.log(`Cached:${url}`);
 		} else {
-			console.warn(`獲取失敗：${url}`);
+			console.warn(`Failed to get:${url}`);
 		}
 	} else {
-		console.log(`已存在緩存：${url}`);
+		console.log(`Cache already exists:${url}`);
 	}
 }
 
 async function clearAllCaches() {
 	const keys = await caches.keys();
 	await Promise.all(keys.map((key) => caches.delete(key)));
-	console.log("所有緩存已清除");
+	console.log("All caches cleared");
 }
 
-// --- 安裝：預緩存靜態資源 ---
 self.addEventListener("install", (event) => {
 	self.skipWaiting();
 	event.waitUntil(
@@ -47,7 +45,6 @@ self.addEventListener("install", (event) => {
 	);
 });
 
-// --- 激活：清除舊版本緩存 ---
 self.addEventListener("activate", (event) => {
 	event.waitUntil(
 		caches
@@ -55,9 +52,9 @@ self.addEventListener("activate", (event) => {
 			.then((keys) =>
 				Promise.all(
 					keys
-						.filter((key) => key !== CACHE_NAME) // 删除非当前版本的缓存
+						.filter((key) => key !== CACHE_NAME)
 						.map((key) => {
-							console.log(`清除舊緩存：${key}`);
+							console.log(`Clear old cache: ${key}`);
 							return caches.delete(key);
 						})
 				)
@@ -66,7 +63,6 @@ self.addEventListener("activate", (event) => {
 	);
 });
 
-// --- 抓取：自動緩存 & 返回緩存或網路 ---
 self.addEventListener("fetch", (event) => {
 	const { request } = event;
 
@@ -84,13 +80,12 @@ self.addEventListener("fetch", (event) => {
 						}
 						return networkResponse;
 					})
-					.catch(() => new Response("離線狀態：無法取得資源", { status: 503 }));
+					.catch(() => new Response("Offline status: Unable to obtain resources", { status: 503 }));
 			})
 		)
 	);
 });
 
-// --- 接收來自頁面的消息：添加或清除資源 ---
 self.addEventListener("message", (event) => {
 	const { action, url } = event.data || {};
 
