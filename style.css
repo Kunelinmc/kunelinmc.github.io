@@ -1838,6 +1838,7 @@ body.mobile .xFz8bwNFr {
 	width: 100%;
 	min-width: 100%;
 	border-right: none;
+	margin-top: env(safe-area-inset-top);
 }
 
 body.mobile .xFz8bwNFr:not(.xCr0RyqCg, .xgu6pGjzk) {
@@ -1852,7 +1853,7 @@ body.mobile .x8o58HttN {
 	position: absolute;
 	top: 0;
 	left: 0;
-
+	margin-top: env(safe-area-inset-top);
 	background-color: var(--str-background);
 	width: 100vw;
 	bottom: 0;
@@ -4608,10 +4609,6 @@ body:has(.xIkbBJgzp) :where(.xopQXJrX5, .xZz4zYjIm) {
 	padding: 16px 0;
 }
 
-body.mobile .drawer-body {
-	margin-bottom: env(safe-area-inset-bottom);
-}
-
 .drawer-body:has(.xBWmlKrN2) {
 	display: flex;
 	flex-direction: column;
@@ -5170,14 +5167,4 @@ img.xhbp1EaDj {
 	object-fit: cover;
 	z-index: 1;
 	filter: blur(12px) opacity(0.24);
-}
-
-.xZE4ghdGT {
-	position: fixed;
-	top: 0;
-	right: 0;
-	height: 80px;
-	overflow: hidden;
-	z-index: 9999;
-	background-color: var(--str-overlay);
 }
