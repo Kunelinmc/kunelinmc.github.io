@@ -1164,8 +1164,12 @@ body:not(.mobile) .xrQdSHI2A:not(.disabled):hover {
 	color: color-mix(in oklab, var(--color-zinc-300) 72%, transparent);
 }
 
+html, body {
+	overflow: hidden;
+}
+
 body.mobile {
-	overflow: hidden !important;
+	min-height: 100dvh;
 }
 
 .x2fP9fkxS.hide {
