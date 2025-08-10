@@ -1,4 +1,4 @@
-/**release 0.2.7.5 (test*/
+/**release 0.2.7*/
 @font-face {
 	font-family: "Geist Sans";
 	font-style: normal;
@@ -1172,6 +1172,7 @@ body {
 body.mobile {
 	position: fixed;
 	overflow: hidden !important;
+	height: 100dvh;
 	z-index: 2;
 }
 
@@ -1844,6 +1845,7 @@ body:has(.x8o58HttN.x8VAGH6N2).mobile .xFz8bwNFr:not(.xjv5U11Kz, .xgu6pGjzk) {
 body.mobile .xFz8bwNFr {
 	position: absolute;
 	top: 0;
+	height: 100dvh;
 	flex-grow: 1;
 	width: 100%;
 	min-width: 100%;
@@ -1864,6 +1866,7 @@ body.mobile .x8o58HttN {
 	top: 0;
 	left: 0;
 	margin-top: env(safe-area-inset-top);
+	height: 100dvh;
 	background-color: var(--str-background);
 	width: 100vw;
 	bottom: 0;
