@@ -1,5 +1,5 @@
 /**release 0.4.1*/
-const CACHE_NAME = "xcjYCXsFR";
+const CACHE_NAME = "x9MyhsYex";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
