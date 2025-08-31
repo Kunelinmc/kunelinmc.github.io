@@ -1,5 +1,5 @@
 /**release 0.3.9*/
-const CACHE_NAME = "xYVVowb1v";
+const CACHE_NAME = "xxp0xw5if";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -96,4 +96,16 @@ self.addEventListener("message", (event) => {
 	if (action === "clear-all-caches") {
 		clearAllCaches();
 	}
+});
+
+self.addEventListener("push", function (event) {
+	const data = event.data.json();
+	const { title, body, icon } = data.notification;
+
+	event.waitUntil(
+		self.registration.showNotification(title, {
+			body,
+			icon,
+		})
+	);
 });
