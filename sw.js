@@ -1,4 +1,6 @@
 /**release 0.4.1*/
+const DB_NAME = "sw-unread-db";
+const DB_STORE = "unreadStore";
 const CACHE_NAME = "xrYLg7P7v";
 const PRECACHE_URLS = [
 	"/",
@@ -14,6 +16,41 @@ const PRECACHE_URLS = [
 ];
 
 let unreadCount = 0;
+
+function openDB() {
+	return new Promise((resolve, reject) => {
+		const request = indexedDB.open(DB_NAME, 1);
+		request.onupgradeneeded = () => {
+			const db = request.result;
+			if (!db.objectStoreNames.contains(DB_STORE)) {
+				db.createObjectStore(DB_STORE);
+			}
+		};
+		request.onsuccess = () => resolve(request.result);
+		request.onerror = () => reject(request.error);
+	});
+}
+
+async function setUnreadCount(count) {
+	const db = await openDB();
+	const tx = db.transaction(DB_STORE, "readwrite");
+	tx.objectStore(DB_STORE).put(count, "unreadCount");
+	return tx.complete;
+}
+
+async function getUnreadCount() {
+	const db = await openDB();
+	return new Promise((resolve, reject) => {
+		const tx = db.transaction(DB_STORE, "readonly");
+		const request = tx.objectStore(DB_STORE).get("unreadCount");
+		request.onsuccess = () => resolve(request.result || 0);
+		request.onerror = () => reject(request.error);
+	});
+}
+
+getUnreadCount().then((count) => {
+	unreadCount = count;
+});
 
 async function openCache() {
 	return await caches.open(CACHE_NAME);
@@ -56,10 +93,7 @@ self.addEventListener("activate", (event) => {
 				Promise.all(
 					keys
 						.filter((key) => key !== CACHE_NAME)
-						.map((key) => {
-							console.log(`Clear old cache: ${key}`);
-							return caches.delete(key);
-						})
+						.map((key) => caches.delete(key))
 				)
 			)
 			.then(() => self.clients.claim())
@@ -68,7 +102,6 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
 	const { request } = event;
-
 	if (request.method !== "GET" || !request.url.startsWith("http")) return;
 
 	event.respondWith(
@@ -78,9 +111,7 @@ self.addEventListener("fetch", (event) => {
 
 				return fetch(request)
 					.then((networkResponse) => {
-						if (networkResponse.ok) {
-							cache.put(request, networkResponse.clone());
-						}
+						if (networkResponse.ok) cache.put(request, networkResponse.clone());
 						return networkResponse;
 					})
 					.catch(
@@ -97,41 +128,30 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener("message", (event) => {
 	const { action, url } = event.data || {};
 
-	if (action === "cache-url" && url) {
-		addToCacheIfNotExists(url);
-	}
+	if (action === "cache-url" && url) addToCacheIfNotExists(url);
 
-	if (action === "clear-all-caches") {
-		clearAllCaches();
-	}
+	if (action === "clear-all-caches") clearAllCaches();
 
 	if (action === "reset-unread") {
 		unreadCount = 0;
+		setUnreadCount(unreadCount);
 
 		if ("clearAppBadge" in navigator) {
-			navigator.clearAppBadge().catch((err) => {
-				console.error("Failed to clear badge", err);
-			});
+			navigator.clearAppBadge().catch(console.error);
 		}
 	}
 });
 
-self.addEventListener("push", function (event) {
+self.addEventListener("push", async function (event) {
 	const data = event.data.json();
 	const { title, body, icon } = data.notification;
 
 	unreadCount += 1;
+	await setUnreadCount(unreadCount);
 
 	if ("setAppBadge" in navigator) {
-		navigator.setAppBadge(unreadCount).catch((err) => {
-			console.error("Failed to set badge", err);
-		});
+		navigator.setAppBadge(unreadCount).catch(console.error);
 	}
 
-	event.waitUntil(
-		self.registration.showNotification(title, {
-			body,
-			icon,
-		})
-	);
+	event.waitUntil(self.registration.showNotification(title, { body, icon }));
 });
