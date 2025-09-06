@@ -1,7 +1,7 @@
 /**release 0.4.1*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xNUlfvwS5";
+const CACHE_NAME = "x1DVynfkG";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -17,7 +17,6 @@ const PRECACHE_URLS = [
 
 let unreadCount = 0;
 
-// ---------------- IndexedDB ----------------
 function openDB() {
 	return new Promise((resolve, reject) => {
 		const request = indexedDB.open(DB_NAME, 1);
@@ -32,19 +31,16 @@ function openDB() {
 	});
 }
 
-function setUnreadCount(count) {
-	return new Promise(async (resolve, reject) => {
-		const db = await openDB();
-		const tx = db.transaction(DB_STORE, "readwrite");
-		tx.objectStore(DB_STORE).put(count, "unreadCount");
-		tx.oncomplete = () => resolve();
-		tx.onerror = () => reject(tx.error);
-	});
+async function setUnreadCount(count) {
+	const db = await openDB();
+	const tx = db.transaction(DB_STORE, "readwrite");
+	tx.objectStore(DB_STORE).put(count, "unreadCount");
+	return tx.complete;
 }
 
-function getUnreadCount() {
-	return new Promise(async (resolve, reject) => {
-		const db = await openDB();
+async function getUnreadCount() {
+	const db = await openDB();
+	return new Promise((resolve, reject) => {
 		const tx = db.transaction(DB_STORE, "readonly");
 		const request = tx.objectStore(DB_STORE).get("unreadCount");
 		request.onsuccess = () => resolve(request.result || 0);
@@ -52,48 +48,30 @@ function getUnreadCount() {
 	});
 }
 
-function setNotificationsEnabled(enabled) {
-	return new Promise(async (resolve, reject) => {
-		const db = await openDB();
-		const tx = db.transaction(DB_STORE, "readwrite");
-		tx.objectStore(DB_STORE).put(enabled, "notificationsEnabled");
-		tx.oncomplete = () => resolve();
-		tx.onerror = () => reject(tx.error);
-	});
-}
+getUnreadCount().then((count) => {
+	unreadCount = count;
+	if ("setAppBadge" in navigator) {
+		navigator.setAppBadge(unreadCount).catch(console.error);
+	}
+});
 
-function getNotificationsEnabled() {
-	return new Promise(async (resolve, reject) => {
-		const db = await openDB();
-		const tx = db.transaction(DB_STORE, "readonly");
-		const request = tx.objectStore(DB_STORE).get("notificationsEnabled");
-		request.onsuccess = () => resolve(request.result ?? true);
-		request.onerror = () => reject(request.error);
-	});
-}
-
-// ---------------- Cache ----------------
 async function openCache() {
-	return caches.open(CACHE_NAME);
+	return await caches.open(CACHE_NAME);
 }
 
 async function addToCacheIfNotExists(url) {
 	const cache = await openCache();
 	const cached = await cache.match(url);
 	if (!cached) {
-		try {
-			const response = await fetch(url);
-			if (response.ok) {
-				await cache.put(url, response.clone());
-				console.log(`Cached: ${url}`);
-			} else {
-				console.warn(`Failed to fetch: ${url}`);
-			}
-		} catch (err) {
-			console.warn(`Fetch error: ${url}`, err);
+		const response = await fetch(url);
+		if (response.ok) {
+			await cache.put(url, response.clone());
+			console.log(`Cached:${url}`);
+		} else {
+			console.warn(`Failed to get:${url}`);
 		}
 	} else {
-		console.log(`Cache already exists: ${url}`);
+		console.log(`Cache already exists:${url}`);
 	}
 }
 
@@ -103,34 +81,6 @@ async function clearAllCaches() {
 	console.log("All caches cleared");
 }
 
-// ---------------- Notifications ----------------
-async function toggleNotifications(enable) {
-	const permission = await Notification.requestPermission();
-	const notificationsEnabled = permission === "granted" && enable;
-	await setNotificationsEnabled(notificationsEnabled);
-
-	const clients = await self.clients.matchAll();
-	clients.forEach((client) =>
-		client.postMessage({
-			action: "notification-status",
-			enabled: notificationsEnabled,
-		})
-	);
-	return notificationsEnabled;
-}
-
-// ---------------- Badge ----------------
-async function updateAppBadge() {
-	const clients = await self.clients.matchAll();
-	clients.forEach((client) =>
-		client.postMessage({
-			action: "update-badge",
-			unreadCount,
-		})
-	);
-}
-
-// ---------------- Service Worker Events ----------------
 self.addEventListener("install", (event) => {
 	self.skipWaiting();
 	event.waitUntil(
@@ -144,7 +94,9 @@ self.addEventListener("activate", (event) => {
 			.keys()
 			.then((keys) =>
 				Promise.all(
-					keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+					keys
+						.filter((key) => key !== CACHE_NAME)
+						.map((key) => caches.delete(key))
 				)
 			)
 			.then(() => self.clients.claim())
@@ -165,18 +117,19 @@ self.addEventListener("fetch", (event) => {
 						if (networkResponse.ok) cache.put(request, networkResponse.clone());
 						return networkResponse;
 					})
-					.catch(() =>
-						new Response("Offline status: Unable to obtain resources", {
-							status: 503,
-						})
+					.catch(
+						() =>
+							new Response("Offline status: Unable to obtain resources", {
+								status: 503,
+							})
 					);
 			})
 		)
 	);
 });
 
-self.addEventListener("message", async (event) => {
-	const { action, url, enableNotifications } = event.data || {};
+self.addEventListener("message", (event) => {
+	const { action, url } = event.data || {};
 
 	if (action === "cache-url" && url) addToCacheIfNotExists(url);
 
@@ -184,39 +137,25 @@ self.addEventListener("message", async (event) => {
 
 	if (action === "reset-unread") {
 		unreadCount = 0;
-		await setUnreadCount(unreadCount);
-		updateAppBadge();
-	}
+		setUnreadCount(unreadCount);
 
-	if (action === "toggle-notifications") await toggleNotifications(enableNotifications);
-
-	if (action === "get-notification-status") {
-		const enabled = await getNotificationsEnabled();
-		const clients = await self.clients.matchAll();
-		clients.forEach((client) =>
-			client.postMessage({
-				action: "notification-status",
-				enabled,
-			})
-		);
+		if ("clearAppBadge" in navigator) {
+			navigator.clearAppBadge().catch(console.error);
+		}
 	}
 });
 
-// ---------------- Push ----------------
 self.addEventListener("push", async (event) => {
-	const notificationsEnabled = await getNotificationsEnabled();
-	if (!notificationsEnabled || Notification.permission !== "granted") return;
-
-	const data = event.data?.json?.() || {};
-	const { title = "New Notification", body = "", icon } = data.notification || {};
+	const data = event.data.json();
+	const { title, body, icon } = data.notification;
 
 	unreadCount = await getUnreadCount();
 	unreadCount += 1;
 	await setUnreadCount(unreadCount);
 
-	updateAppBadge();
+	if ("setAppBadge" in navigator) {
+		navigator.setAppBadge(unreadCount).catch(console.error);
+	}
 
-	event.waitUntil(
-		self.registration.showNotification(title, { body, icon })
-	);
+	event.waitUntil(self.registration.showNotification(title, { body, icon }));
 });
