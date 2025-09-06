@@ -1,5 +1,5 @@
 /**release 0.4.0*/
-const CACHE_NAME = "xWT85Admp";
+const CACHE_NAME = "x1V1ssMAQ";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
