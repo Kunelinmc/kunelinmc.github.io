@@ -1,7 +1,7 @@
 /**release 0.4.1*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xrYLg7P7v";
+const CACHE_NAME = "xkrFx5WSa";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -50,6 +50,9 @@ async function getUnreadCount() {
 
 getUnreadCount().then((count) => {
 	unreadCount = count;
+	if ("setAppBadge" in navigator) {
+		navigator.setAppBadge(unreadCount).catch(console.error);
+	}
 });
 
 async function openCache() {
@@ -142,10 +145,11 @@ self.addEventListener("message", (event) => {
 	}
 });
 
-self.addEventListener("push", async function (event) {
+self.addEventListener("push", async (event) => {
 	const data = event.data.json();
 	const { title, body, icon } = data.notification;
 
+	unreadCount = await getUnreadCount();
 	unreadCount += 1;
 	await setUnreadCount(unreadCount);
 
