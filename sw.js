@@ -1,7 +1,7 @@
 /**release 0.4.1*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "x1DVynfkG";
+const CACHE_NAME = "xUI8DuhDE";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -33,9 +33,14 @@ function openDB() {
 
 async function setUnreadCount(count) {
 	const db = await openDB();
-	const tx = db.transaction(DB_STORE, "readwrite");
-	tx.objectStore(DB_STORE).put(count, "unreadCount");
-	return tx.complete;
+	return new Promise((resolve, reject) => {
+		const tx = db.transaction(DB_STORE, "readwrite");
+		const store = tx.objectStore(DB_STORE);
+		const request = store.put(count, "unreadCount");
+
+		request.onsuccess = () => resolve(count);
+		request.onerror = () => reject(request.error);
+	});
 }
 
 async function getUnreadCount() {
