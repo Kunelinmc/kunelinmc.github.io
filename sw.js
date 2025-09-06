@@ -1,7 +1,7 @@
 /**release 0.4.1*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xUI8DuhDE";
+const CACHE_NAME = "xZP7ZHTFL";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -14,8 +14,6 @@ const PRECACHE_URLS = [
 	"/assets/draft2.png",
 	"/assets/default-banner.png",
 ];
-
-let unreadCount = 0;
 
 function openDB() {
 	return new Promise((resolve, reject) => {
@@ -133,7 +131,7 @@ self.addEventListener("fetch", (event) => {
 	);
 });
 
-self.addEventListener("message", (event) => {
+self.addEventListener("message", async (event) => {
 	const { action, url } = event.data || {};
 
 	if (action === "cache-url" && url) addToCacheIfNotExists(url);
@@ -141,8 +139,7 @@ self.addEventListener("message", (event) => {
 	if (action === "clear-all-caches") clearAllCaches();
 
 	if (action === "reset-unread") {
-		unreadCount = 0;
-		setUnreadCount(unreadCount);
+		await setUnreadCount(0);
 
 		if ("clearAppBadge" in navigator) {
 			navigator.clearAppBadge().catch(console.error);
@@ -150,17 +147,20 @@ self.addEventListener("message", (event) => {
 	}
 });
 
-self.addEventListener("push", async (event) => {
-	const data = event.data.json();
-	const { title, body, icon } = data.notification;
+self.addEventListener("push", (event) => {
+	event.waitUntil(
+		(async () => {
+			const data = event.data.json();
+			const { title, body, icon } = data.notification;
+			let count = await getUnreadCount();
+			count += 1;
+			await setUnreadCount(count);
 
-	unreadCount = await getUnreadCount();
-	unreadCount += 1;
-	await setUnreadCount(unreadCount);
+			if ("setAppBadge" in navigator) {
+				navigator.setAppBadge(count).catch(console.error);
+			}
 
-	if ("setAppBadge" in navigator) {
-		navigator.setAppBadge(unreadCount).catch(console.error);
-	}
-
-	event.waitUntil(self.registration.showNotification(title, { body, icon }));
+			await self.registration.showNotification(title, { body, icon });
+		})()
+	);
 });
