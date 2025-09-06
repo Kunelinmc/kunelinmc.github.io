@@ -8,6 +8,8 @@ const PRECACHE_URLS = [
 	"/manifest.json",
 	"/assets/icon.png",
 	"/assets/avatar.png",
+	"/assets/draft1.png",
+	"/assets/draft2.png",
 	"/assets/default-banner.png"
 ];
 
