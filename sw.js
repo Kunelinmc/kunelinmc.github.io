@@ -1,4 +1,5 @@
 /**release 0.4.1*/
+/**release 0.4.1*/
 const CACHE_NAME = "xoy9k4g13";
 const PRECACHE_URLS = [
 	"/",
@@ -10,8 +11,10 @@ const PRECACHE_URLS = [
 	"/assets/avatar.png",
 	"/assets/draft1.png",
 	"/assets/draft2.png",
-	"/assets/default-banner.png"
+	"/assets/default-banner.png",
 ];
+
+let unreadCount = 0;
 
 async function openCache() {
 	return await caches.open(CACHE_NAME);
@@ -81,7 +84,12 @@ self.addEventListener("fetch", (event) => {
 						}
 						return networkResponse;
 					})
-					.catch(() => new Response("Offline status: Unable to obtain resources", { status: 503 }));
+					.catch(
+						() =>
+							new Response("Offline status: Unable to obtain resources", {
+								status: 503,
+							})
+					);
 			})
 		)
 	);
@@ -97,11 +105,29 @@ self.addEventListener("message", (event) => {
 	if (action === "clear-all-caches") {
 		clearAllCaches();
 	}
+
+	if (action === "reset-unread") {
+		unreadCount = 0;
+
+		if ("clearAppBadge" in navigator) {
+			navigator.clearAppBadge().catch((err) => {
+				console.error("Failed to clear badge", err);
+			});
+		}
+	}
 });
 
 self.addEventListener("push", function (event) {
 	const data = event.data.json();
 	const { title, body, icon } = data.notification;
+
+	unreadCount += 1;
+
+	if ("setAppBadge" in navigator) {
+		navigator.setAppBadge(unreadCount).catch((err) => {
+			console.error("Failed to set badge", err);
+		});
+	}
 
 	event.waitUntil(
 		self.registration.showNotification(title, {
