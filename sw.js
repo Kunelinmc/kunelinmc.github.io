@@ -1,7 +1,7 @@
 /**release 0.4.6*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xMfXpkWru";
+const CACHE_NAME = "xUOwZ6zTE";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -109,6 +109,40 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
 	const { request } = event;
 	if (request.method !== "GET" || !request.url.startsWith("http")) return;
+
+	const url = new URL(request.url);
+
+	// Determine whether it is the root directory
+	if (url.pathname === "/") {
+		event.respondWith(
+			openCache().then((cache) => {
+				// Uniformly construct a cache key without search
+				const cacheKey = new Request(url.origin + "/", {
+					method: request.method,
+					headers: request.headers,
+				});
+
+				return cache.match(cacheKey).then((cachedResponse) => {
+					if (cachedResponse) return cachedResponse;
+
+					return fetch(request)
+						.then((networkResponse) => {
+							if (networkResponse.ok) {
+								cache.put(cacheKey, networkResponse.clone());
+							}
+							return networkResponse;
+						})
+						.catch(
+							() =>
+								new Response("Offline status: Unable to obtain root page", {
+									status: 503,
+								})
+						);
+				});
+			})
+		);
+		return;
+	}
 
 	event.respondWith(
 		openCache().then((cache) =>
