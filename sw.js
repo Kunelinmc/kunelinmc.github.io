@@ -1,7 +1,7 @@
-/**release 0.4.6*/
+/**release 0.4.7*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xHwieToBz";
+const CACHE_NAME = "xFAClXKtH";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
