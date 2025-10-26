@@ -1,7 +1,7 @@
 /**release 0.4.9*/
 const DB_NAME = "sw-unread-db";
 const DB_STORE = "unreadStore";
-const CACHE_NAME = "xKsPi4jT8";
+const CACHE_NAME = "xs11d4uid";
 const PRECACHE_URLS = [
 	"/",
 	"/index.html",
@@ -186,15 +186,21 @@ self.addEventListener("push", (event) => {
 		(async () => {
 			const data = event.data.json();
 			const { title, body, icon } = data.notification;
+
 			let count = await getUnreadCount();
-			count += 1;
-			await setUnreadCount(count);
 
-			if ("setAppBadge" in navigator) {
-				navigator.setAppBadge(count).catch(console.error);
+			if (title === "set-unread-count") {
+				count = body;
+				await setUnreadCount(count);
+			} else {
+				count += 1;
+				await setUnreadCount(count);
+
+				if ("setAppBadge" in navigator) {
+					navigator.setAppBadge(count).catch(console.error);
+				}
+				await self.registration.showNotification(title, { body, icon });
 			}
-
-			await self.registration.showNotification(title, { body, icon });
 		})()
 	);
 });
