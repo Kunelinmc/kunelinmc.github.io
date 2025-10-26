@@ -190,7 +190,7 @@ self.addEventListener("push", (event) => {
 			let count = await getUnreadCount();
 
 			if (title === "set-unread-count") {
-				count = body;
+				count = Number(body);
 				await setUnreadCount(count);
 			} else {
 				count += 1;
